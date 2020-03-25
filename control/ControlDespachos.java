@@ -1,6 +1,11 @@
 package control;
 
 public class ControlDespachos {
+    private GestionCliente gestionCliente;
+    private GestionProducto gestionProducto;
+    private ArrayList<Cliente> listaClientes; 
+    private ArrayList<Producto> listaProductos;
+    private ArrayList<Pedido> pedidos;
 
 }
 

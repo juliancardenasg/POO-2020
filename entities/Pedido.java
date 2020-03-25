@@ -1,6 +1,13 @@
 package entities;
+import java.util.Calendar;
 
 public class Pedido {
+    private long numeroPedido;
+    private Calendar fechaRecibido;
+    private boolean pagado;
+    private String nombreRepartidor;
+    private Cliente solicitante;
+    private Producto productoSolicitado;
 
 }
 
