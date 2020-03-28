@@ -3,29 +3,9 @@ package control;
 import entities.Producto;
 import entities.Pedido;
 import java.util.ArrayList;
-
+import java.util.ArrayList;
+import java.util.Scanner;
 public class GestionProductos {
-	/*
-	private ArrayList<Producto> listaProductos;
-
-	public GestionProductos()
-	{
-		this.listaProductos = new ArrayList<Producto>();
-	}
-	public GestionProductos(ArrayList<Producto> listaProducto)
-	{
-		this.listaProductos = listaProducto;
-	}
-
-
-	public ArrayList<Producto> getListaProductos() {
-		return listaProductos;
-	}
-
-	public void setListaProductos(ArrayList<Producto> listaProductos) {
-		this.listaProductos = listaProductos;
-	}
-	*/
 
 
 	public void imprimirProductos(ArrayList<Producto> listaProductos)
@@ -49,7 +29,7 @@ public class GestionProductos {
 				nuevo_producto.setNombreComercial(nombreComercial);
 				nuevo_producto.setPrecio(precio);
 				nuevo_producto.setTienda(tienda);
-				nuevo_producto.setIva(precio*0.19f);
+				nuevo_producto.setIva(precio);
 				listaProductos.add(nuevo_producto);
 				return true;
 			}
@@ -63,34 +43,45 @@ public class GestionProductos {
 	}
 
 
-	public boolean modificar_un_producto(ArrayList<Producto> listaProductos,long pid, String nombreComercial,double precio, String tienda,int opcion)
+	public boolean modificar_un_producto(ArrayList<Producto> listaProductos,long pid)
 	{
 		int index = getIndexProducto(listaProductos,pid);
-
+		Scanner sc = new Scanner(System.in);
+		
         if(index != -1){
+        	System.out.println("que desea modificar?");
         	listaProductos.get(index).toString();
+        	System.out.println("\n:");
+        	int opcion = sc.nextInt();
         	switch(opcion)
         	{
         	case 1:
+        		System.out.println("\ndeme el nuevo nombre del producto:");
+        		String nombreComercial = sc.next();
         		listaProductos.get(index).setNombreComercial(nombreComercial);
         		break;
         	case 2:
+        		System.out.println("\ndeme el nuevo precio del producto:");
+        		double precio = sc.nextDouble();
         		listaProductos.get(index).setPrecio(precio);
-        		listaProductos.get(index).setIva(precio*0.19f);
+        		listaProductos.get(index).setIva(precio);
         		break;
         	case 3:
+        		System.out.println("\ndeme el nombre de la nueva tienda:");
+        		String tienda = sc.next();
         		listaProductos.get(index).setTienda(tienda);
         		break;
         	default:
+        		System.out.println("\nopcion invalida");
         		break;
-
-        	}
+        	
+        	}    	
 
         	return true;
         }
         else
         	return false;
-
+		
 	}
 
 	public boolean eliminar_un_producto(ArrayList<Producto> listaProductos,long pid_de_baja, ArrayList<Pedido> pedidos)
