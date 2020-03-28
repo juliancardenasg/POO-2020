@@ -18,7 +18,6 @@ public class Producto {
 		this.precio = precio;
 		this.tienda = tienda;
 	}
-
 	public Producto() {	}
 
 	public long getPid() {

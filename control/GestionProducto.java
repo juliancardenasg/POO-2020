@@ -44,7 +44,6 @@ public class GestionProductos {
 
 	}
 
-
 	public boolean modificar_un_producto(ArrayList<Producto> listaProductos,long pid)
 	{
 		int index = getIndexProducto(listaProductos,pid);
