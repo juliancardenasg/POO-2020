@@ -26,6 +26,7 @@ public class PantallaDespacho {
 		despacho.listadoPedidos (1114, new GregorianCalendar(2020,3,30));*/
 		
 		//Testeando dinámicamente
+		ControlDespachos despacho = new ControlDespachos();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Bienvenido al sistema de despacho de productos. \n "
 				+ "Podra realizar las siguientes acciones: \n");
@@ -170,7 +171,19 @@ public class PantallaDespacho {
 			case 13:
 				System.out.println("Ingrese el codigo del producto: ");
 				long pid4 = sc.nextLong();
-				despacho.listadoPedidos (pid4, new GregorianCalendar(2020,3,30));
+				
+				String fecha;
+		        Calendar cal = Calendar.getInstance();
+		        System.out.println("INGRESE LA FECHA NUEVA \n EN FORMA: dd-MM-yyyy");
+		        fecha = sc.next();// el String
+		        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		        Date fecha_date = sdf.parse(fecha);
+		        
+		        cal.setTime(fecha_date);
+		        //System.out.println(cal.get(Calendar.DAY_OF_MONTH)+"-"+cal.get(Calendar.MONTH+1)+"-"+cal.get(Calendar.YEAR));
+				
+				
+				despacho.listadoPedidos (pid4, cal.setTime(fecha_date));
 				break;
 			case 14:
 				System.out.println("Gracias por usar el sistema de despacho");
