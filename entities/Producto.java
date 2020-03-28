@@ -16,6 +16,7 @@ public class Producto {
 		this.pid = pid;
 		this.nombreComercial = nombreComercial;
 		this.precio = precio;
+		this.iva = precio*0.19f;
 		this.tienda = tienda;
 	}
 	public Producto() {	}
