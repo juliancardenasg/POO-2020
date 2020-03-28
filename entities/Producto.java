@@ -3,7 +3,7 @@ public class Producto {
 	private long pid;
 	private String nombreComercial;
 	private double precio;
-	private double iva;
+	private double iva=0;
 	private String tienda;
 
 	@Override
@@ -12,11 +12,10 @@ public class Producto {
 				+ ", \n(3)tienda=" + tienda ;
 	}
 	
-	public Producto(long pid, String nombreComercial, double precio, double iva, String tienda) {
+	public Producto(long pid, String nombreComercial, double precio, String tienda) {
 		this.pid = pid;
 		this.nombreComercial = nombreComercial;
 		this.precio = precio;
-		this.iva = iva;
 		this.tienda = tienda;
 	}
 
