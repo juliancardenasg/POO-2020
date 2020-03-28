@@ -1,6 +1,128 @@
+import java.util.ArrayList;
 package control;
 
-public class GestionProducto {
+import control.ControlDespachos;
+import entities.Producto;
+import entities.Pedido;
+import java.util.ArrayList;
+public class GestionProductos {
+	/*
+	private ArrayList<Producto> listaProductos;
+
+	public GestionProductos()
+	{
+		this.listaProductos = new ArrayList<Producto>();
+	}
+	public GestionProductos(ArrayList<Producto> listaProducto)
+	{
+		this.listaProductos = listaProducto;
+	}
+
+
+	public ArrayList<Producto> getListaProductos() {
+		return listaProductos;
+	}
+
+	public void setListaProductos(ArrayList<Producto> listaProductos) {
+		this.listaProductos = listaProductos;
+	}
+	*/
+
+
+	public void imprimirProductos(ArrayList<Producto> listaProducto)
+	{
+		for(Producto aux_prod: listaProductos )
+		{
+			System.out.println(aux_prod.toString());
+		}
+	}
+
+
+	public boolean insertar_un_producto(ArrayList<Producto> listaProducto,long pid, String nombreComercial,double precio, String tienda)
+	{
+		int index = getIndexProducto(listaProducto,pid);
+		if(index ==-1)
+		{
+			if( pid>=100000 && pid <= 9999999)
+			{
+				Producto nuevo_producto = new Producto();
+				nuevo_producto.setPid(pid);
+				nuevo_producto.setNombreComercial(nombreComercial);
+				nuevo_producto.setPrecio(precio);
+				nuevo_producto.setTienda(tienda);
+				nuevo_producto.setIva(precio*0.19f);
+				listaProductos.add(nuevo_producto);
+				return true;
+			}
+			else
+				return false;
+
+		}
+		else
+			return false;
+
+	}
+
+
+	public boolean modificar_un_producto(ArrayList<Producto> listaProducto,long pid, String nombreComercial,double precio, String tienda,int opcion)
+	{
+		int index = getIndexProducto(listaProducto,pid);
+
+        if(index != -1){
+        	listaProductos.get(index).toString();
+        	switch(opcion)
+        	{
+        	case 1:
+        		listaProductos.get(index).setNombreComercial(nombreComercial);
+        		break;
+        	case 2:
+        		listaProductos.get(index).setPrecio(precio);
+        		listaProductos.get(index).setIva(precio*0.19f);
+        		break;
+        	case 3:
+        		listaProductos.get(index).setTienda(tienda);
+        		break;
+        	default:
+        		break;
+
+        	}
+
+        	return true;
+        }
+        else
+        	return false;
+
+	}
+
+	public boolean eliminar_un_producto(ArrayList<Producto> listaProducto,long pid_de_baja, ArrayList<Pedido> pedidos)
+	{
+		int index = getIndexProducto(listaProducto,pid_de_baja);
+		for(Pedido pedido : pedidos)
+		{
+			if(pedido.getSolicitante().getPid() == pid_de_baja)
+			{
+				return false;
+			}
+		}
+		listaProducto.remove(index);
+		return true;
+	}
+
+
+    private int getIndexProducto (ArrayList<Producto> listaProducto,long idProducto)
+    {
+        for (int i = 0; i < listaProductos.size() ; i++)
+        {
+            if(listaProductos.get(i).getPid() == idProducto )
+            {
+                 return i;
+            }
+        }
+        return -1;
+    }
+
+
+
 
 }
 
