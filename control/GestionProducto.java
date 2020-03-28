@@ -22,6 +22,7 @@ public class GestionProductos {
 		int index = getIndexProducto(listaProductos,pid);
 		if(index ==-1)
 		{
+			
 			if( pid>=100000 && pid <= 9999999)
 			{
 				Producto nuevo_producto = new Producto();
@@ -32,6 +33,7 @@ public class GestionProductos {
 				nuevo_producto.setIva(precio);
 				listaProductos.add(nuevo_producto);
 				return true;
+				
 			}
 			else
 				return false;
