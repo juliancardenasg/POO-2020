@@ -3,7 +3,7 @@ public class Producto {
 	private long pid;
 	private String nombreComercial;
 	private double precio;
-	private double iva;
+	private double iva=0;
 	private String tienda;
 
 	@Override
@@ -11,6 +11,15 @@ public class Producto {
 		return "Producto \n(imposible de modificar)pid=" + pid + ", \n(1)nombreComercial=" + nombreComercial + ", \n(2)precio=" + precio + ", \n(2)iva=" + iva
 				+ ", \n(3)tienda=" + tienda ;
 	}
+	
+	public Producto(long pid, String nombreComercial, double precio, String tienda) {
+		this.pid = pid;
+		this.nombreComercial = nombreComercial;
+		this.precio = precio;
+		this.tienda = tienda;
+	}
+
+	public Producto() {	}
 
 	public long getPid() {
 		return pid;

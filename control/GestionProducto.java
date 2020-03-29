@@ -1,10 +1,9 @@
-import java.util.ArrayList;
 package control;
 
-import control.ControlDespachos;
 import entities.Producto;
 import entities.Pedido;
 import java.util.ArrayList;
+
 public class GestionProductos {
 	/*
 	private ArrayList<Producto> listaProductos;
@@ -29,7 +28,7 @@ public class GestionProductos {
 	*/
 
 
-	public void imprimirProductos(ArrayList<Producto> listaProducto)
+	public void imprimirProductos(ArrayList<Producto> listaProductos)
 	{
 		for(Producto aux_prod: listaProductos )
 		{
@@ -38,9 +37,9 @@ public class GestionProductos {
 	}
 
 
-	public boolean insertar_un_producto(ArrayList<Producto> listaProducto,long pid, String nombreComercial,double precio, String tienda)
+	public boolean insertar_un_producto(ArrayList<Producto> listaProductos,long pid, String nombreComercial,double precio, String tienda)
 	{
-		int index = getIndexProducto(listaProducto,pid);
+		int index = getIndexProducto(listaProductos,pid);
 		if(index ==-1)
 		{
 			if( pid>=100000 && pid <= 9999999)
@@ -64,9 +63,9 @@ public class GestionProductos {
 	}
 
 
-	public boolean modificar_un_producto(ArrayList<Producto> listaProducto,long pid, String nombreComercial,double precio, String tienda,int opcion)
+	public boolean modificar_un_producto(ArrayList<Producto> listaProductos,long pid, String nombreComercial,double precio, String tienda,int opcion)
 	{
-		int index = getIndexProducto(listaProducto,pid);
+		int index = getIndexProducto(listaProductos,pid);
 
         if(index != -1){
         	listaProductos.get(index).toString();
@@ -94,22 +93,22 @@ public class GestionProductos {
 
 	}
 
-	public boolean eliminar_un_producto(ArrayList<Producto> listaProducto,long pid_de_baja, ArrayList<Pedido> pedidos)
+	public boolean eliminar_un_producto(ArrayList<Producto> listaProductos,long pid_de_baja, ArrayList<Pedido> pedidos)
 	{
-		int index = getIndexProducto(listaProducto,pid_de_baja);
+		int index = getIndexProducto(listaProductos,pid_de_baja);
 		for(Pedido pedido : pedidos)
 		{
-			if(pedido.getSolicitante().getPid() == pid_de_baja)
+			if(pedido.getProductoSolicitado().getPid() == pid_de_baja)
 			{
 				return false;
 			}
 		}
-		listaProducto.remove(index);
+		listaProductos.remove(index);
 		return true;
 	}
 
 
-    private int getIndexProducto (ArrayList<Producto> listaProducto,long idProducto)
+    private int getIndexProducto (ArrayList<Producto> listaProductos,long idProducto)
     {
         for (int i = 0; i < listaProductos.size() ; i++)
         {
