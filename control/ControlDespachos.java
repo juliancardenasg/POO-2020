@@ -260,6 +260,7 @@ public class ControlDespachos {
         nom = sc.next();
         for (Pedido ped : pedidos) {
             if (ped.getNumeroPedido() == numPedido) {
+                
                 ped.setNombreRepartidor(nom);
             }
         }
