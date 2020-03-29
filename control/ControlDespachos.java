@@ -131,7 +131,7 @@ public class ControlDespachos {
     }
 
     public boolean validacionDePedido2(Pedido pedido) {
-
+        /*
         Date fecha = null;
         Calendar cal = Calendar.getInstance();
         cal.setTime(fecha);
@@ -141,11 +141,12 @@ public class ControlDespachos {
         }
 
         return false;
+        */
     }
 
     public void solicitarServiciosAdicionales(long cedula, long pid) {
         System.out.println("Bienvenido al menu: Servicios Adicionales");
-
+        //OPCIONAL
     }
 
     public double costoPedido(long cedula, long pid, Producto producto) {
@@ -347,4 +348,4 @@ cambios.
 Julian,
 
 
-*/
+     */
