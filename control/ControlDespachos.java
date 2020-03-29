@@ -13,24 +13,21 @@ import java.util.Random;
 
 public class ControlDespachos {
 
-    private GestionCliente gestionCliente;
-    private GestionProducto gestionProducto;
-    private ArrayList<Cliente> listaClientes;
-    private ArrayList<Producto> listaProductos;
-    private ArrayList<Pedido> pedidos;
+    private GestionCliente gestionCliente = new GestionCliente();
+    private GestionProducto gestionProducto = new GestionProducto();
+    private ArrayList<Cliente> listaClientes = new ArrayList <>();
+    private ArrayList<Producto> listaProductos = new ArrayList <>();
+    private ArrayList<Pedido> pedidos = new ArrayList <>();
 
     public ControlDespachos() {
         super();
     }
 
-    public ControlDespachos(GestionCliente gestionCliente, GestionProducto gestionProducto,
-            ArrayList<Cliente> listaClientes, ArrayList<Producto> listaProductos, ArrayList<Pedido> pedidos) {
+    public ControlDespachos(GestionCliente gestionCliente, GestionProducto gestionProducto) {
+            
         super();
         this.gestionCliente = gestionCliente;
         this.gestionProducto = gestionProducto;
-        this.listaClientes = listaClientes;
-        this.listaProductos = listaProductos;
-        this.pedidos = pedidos;
     }
 
     public GestionCliente getGestionCliente() {
@@ -73,13 +70,16 @@ public class ControlDespachos {
         this.pedidos = pedidos;
     }
 
-    public boolean reservarPedido(long cedula, long pid, Producto producto) {
-
-
-
-
-
-        return false;
+    public Pedido reservarPedido(long cedula, Producto producto) {
+    	Pedido aux = null;
+    	if(existePedido(producto.getPid()) == true) {
+    		aux.setNumeroPedido(autoGenerarPedido(cedula, producto.getPid()));
+    			System.out.println("Usted reservo un pedido correctamente");
+    				}
+    	else {
+    		System.out.println("Hay un error con la reserva de su pedido. Compruebe sus datos");
+    	}  	
+    	return aux;
     }
 
     public boolean existePedido(long numeroPedido) {
@@ -91,22 +91,22 @@ public class ControlDespachos {
         return false;
     }
 
-    public boolean autoGenerarPedido(long cedula, long pid) {	//Funcion que asigna un numero pedido aleatorio a un pedido que esta por reservar
+    public long autoGenerarPedido(long cedula, long pid) {	//Funcion que asigna un numero pedido aleatorio a un pedido que esta por reservar
         int upperbound = 9999;									//Numero de pedido de cuatro digitos
         Random aleatorio = new Random();
+        long long_random = 0;
 
         for (Cliente aux : this.listaClientes) {
             for (Producto aux2 : this.listaProductos) {
                 if (cedula == aux.getCedula() && pid == aux2.getPid()) {		//Se comprueba que existe cliente y producto
-                    long long_random = (long) aleatorio.nextInt(upperbound);
+                	long_random = (long) aleatorio.nextInt(upperbound);
                     if (existePedido(long_random) == false) {				//Se comprueba que el nª de pedido no haya sido asignado
-                        return true;
                     }
                 }
             }
         }
 
-        return false;
+        return long_random;
     }
 
     public boolean validacionPedido(Pedido pedido) {
@@ -131,22 +131,23 @@ public class ControlDespachos {
     }
 
     public boolean validacionDePedido2(Pedido pedido) {
-        /*
-        Date fecha = null;
+
+    	Date fecha=new Date();
         Calendar cal = Calendar.getInstance();
+        SimpleDateFormat forma= new SimpleDateFormat("dd-MM-yyyy");
         cal.setTime(fecha);
-
-        for (Pedido aux : this.pedidos) {
-            //if(pedido.getFechaRecibido() < fecha.getDate())
+        if((pedido.getFechaRecibido().get(Calendar.DAY_OF_MONTH) - cal.get(Calendar.DAY_OF_MONTH)) > 2) {
+        	return true;
+        	
         }
-
-        return false;
-        */
+        
+           
+           return false;
     }
 
     public void solicitarServiciosAdicionales(long cedula, long pid) {
         System.out.println("Bienvenido al menu: Servicios Adicionales");
-        //OPCIONAL
+
     }
 
     public double costoPedido(long cedula, long pid, Producto producto) {
@@ -177,7 +178,7 @@ public class ControlDespachos {
     }
 
     //PARTE DE RICHARD
-//11
+//11    
     public void ModificarDatosDeUnPedido(long numPedido) throws ParseException {
         Scanner sc = new Scanner(System.in);
 
@@ -213,7 +214,7 @@ public class ControlDespachos {
 
     public void calcularNuevoPrecio(long numPedido) {
         for (Pedido ped : this.pedidos) {
-
+         
             if (ped.getNumeroPedido() == numPedido) {
                 Scanner sc = new Scanner(System.in);
                 String op;
@@ -248,7 +249,7 @@ public class ControlDespachos {
                 temp = ped.getSolicitante().getCedula();//identifico al cliente
                 temporal = ped.getFechaRecibido();
             }
-
+            
             if (ped.getSolicitante().getCedula() == temp && ped.getNumeroPedido() != numPedido && ped.getFechaRecibido() == temporal)//es el cliente con otro pedido, que tiene la fecha ingresada de cambio
             {
                 System.out.println("YA TIENE OTRO PEDIDO A ESTA FECHA, NO SE LE ASIGANARA");
@@ -270,7 +271,7 @@ public class ControlDespachos {
         nom = sc.next();
         for (Pedido ped : pedidos) {
             if (ped.getNumeroPedido() == numPedido) {
-
+                
                 ped.setNombreRepartidor(nom);
             }
         }
@@ -308,44 +309,66 @@ public class ControlDespachos {
         return false;
     }
 
-    //13//
+    
     public void VerListadoDePedidosExistentes() {
+        if(this.pedidos!=null)
+        {
         for (Pedido ped : pedidos) {
             System.out.println("\nCODIGO:" + ped.getNumeroPedido() + "\nFECHA:" + ped.getFechaRecibido() + "\nNOMBRE REPARTIDOR" + ped.getNombreRepartidor() + "\nPRECIO" + costoPedido(ped.getSolicitante().getCedula(),ped.getProductoSolicitado().getPid(), ped.getProductoSolicitado()));
-
+               
+        }    
         }
+        else
+            System.out.println("NO HAY PEDIDOS PARA MOSTRAR");
+        
+    }
+    
+    public int verListadodePedidosParaProductoyFecha (long pid, Calendar fecha) {
+    	int cont = 0;
+    	for(Pedido aux : this.pedidos) {
+    		if(aux.getProductoSolicitado().getPid() == pid && aux.getFechaRecibido() == fecha) {		//Si encuentra un producto con el mismo codigo
+    			System.out.println(aux.getSolicitante().getNombreCompleto());
+    			System.out.println(aux.getSolicitante().getDireccion());
+    			System.out.println();
+    			cont++;
+    		}
+    	}
+    	return cont;
+    }
+    
+    
+    public void imprimirProductos(){
+        this.gestionProducto.imprimirProductos(this.listaProductos);
+    }
+    public boolean insertar_un_producto(long pid, String nombreComercial,double precio, String tienda){
+        return this.gestionProducto.insertar_un_producto(this.listaProductos,pid, nombreComercial,precio, tienda);
     }
 
+    public boolean modificar_un_producto(long pid){
+        return this.gestionProducto.modificar_un_producto(this.listaProductos,pid);
+    }
+    public boolean eliminar_un_producto(long pid_de_baja){
+        return this.gestionProducto.eliminar_un_producto(this.listaProductos, pid_de_baja, pedidos);
+    }
+    
+    
+    public void verClientes() {
+        this.gestionCliente.verClientes(this.listaClientes);
+    }
+    	
+    public boolean insertarCliente( Cliente clienteAIngresar) {
+        return this.gestionCliente.insertarCliente(this.listaClientes, clienteAIngresar);
+    }
 
-
-
+    public boolean modificarCliente(long cedula) {
+        return this.gestionCliente.modificarCliente(this.listaClientes, cedula); 
+    }
+    public boolean eliminarCliente(long cedulaAEliminar) {
+        return this.gestionCliente.eliminarCliente(this.listaClientes, this.pedidos, cedulaAEliminar);
+    }
+    
+    
+    
+    
 }
 
-/*
-Buenas tardes,
-
-Ya cree los tres diferentes espacios de trabajo (tres branches/ramas), distribuidos asi para Pedido:
-Nombre del responsable: Julian Cárdenas y Richard Fonseca
-
-Tener en cuenta lo siguiente:
-- Si usted va a hacer cambios tanto en la entidad (Pedido) como en el control
-(GestionPedido) solo hacer commits en esta rama: "pedido", y cuando tenga
-la version final (ultimo commit), avisar a Julian para que el haga el respectivo
-merge a la rama final (master). Haga cuantos commits desee, pero no olvide
-comentar cada uno de ellos. En resumen, haga los cambios en su repo local, hasta
-que tenga la versión final de esta rama, no avisar.
-- Comunicación por el grupo de Whatsapp para cualquier cosa.
-- Si tiene alguna duda acerca de Git o GitHub, no dude con contactarme, yo le
-ayudo a configurar su repositorio local al remoto y viceversa.
-- Tenga en cuenta el buen manejo de los commits.
-- Como mencione anteriormente, solo gestione y edite sus dos correspondientes
-archivos, despues todos nos encargamos de fusionar y hacer los respectivos
-cambios.
-- Fecha de entrega de esta rama (pedido): Viernes 27 de Marzo
-- No borrar estos comentarios
-
-
-Julian,
-
-
-     */

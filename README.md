@@ -6,6 +6,6 @@ Integrantes del proyecto:
 - Julian Cárdenas
 - Richard Fonseca
 - Edgar Baquero
-- Ricardo T
+- Ricardo Torres
 
-Fecha de entrega: 29 de marzo del 2020
+Fecha de entrega: 28 de marzo del 2020
