@@ -73,15 +73,8 @@ public class ControlDespachos {
         this.pedidos = pedidos;
     }
 
-    public boolean reservarPedido(long cedula, long pid, Producto producto) {
-
-
-
-
-
-        return false;
-    }
-
+    //RESERVAR UN PEDIDO
+    
     public boolean existePedido(long numeroPedido) {
         for (Pedido aux : this.pedidos) {
             if (aux.getNumeroPedido() == numeroPedido) {
@@ -144,6 +137,8 @@ public class ControlDespachos {
 
            return false;
     }
+    
+    //
 
     public void solicitarServiciosAdicionales(long cedula, long pid) {
         System.out.println("Bienvenido al menu: Servicios Adicionales");
@@ -177,8 +172,6 @@ public class ControlDespachos {
 
     }
 
-    //PARTE DE RICHARD
-//11
     public void ModificarDatosDeUnPedido(long numPedido) throws ParseException {
         Scanner sc = new Scanner(System.in);
 
