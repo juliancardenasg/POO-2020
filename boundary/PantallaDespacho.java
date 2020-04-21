@@ -204,4 +204,14 @@ public class PantallaDespacho {
 
 	}
 }
+<<<<<<< HEAD
 	
+=======
+
+/*
+Buenas tardes a todos,
+Por favor nadie toque este espacio en su rama, este espacio solo es
+modificable en la rama master, es decir, la rama final de todo el proyecto.
+Julian,
+*/
+>>>>>>> 05df4b124c5f387bf4329cd0e0625a0ac1dac922
