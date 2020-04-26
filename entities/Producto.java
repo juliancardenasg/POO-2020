@@ -2,11 +2,11 @@ package entities;
 
 public class Producto {
 
-	private long pid;
-	private String nombreComercial;
-	private double precio;
-	private double iva;
-	private String tienda;
+	protected long pid;
+	protected String nombreComercial;
+	protected double precio;
+	protected double iva;
+	protected String tienda;
 
 	@Override
 	public String toString() {
@@ -53,4 +53,26 @@ public class Producto {
 	public void setTienda(String tienda) {
 		this.tienda = tienda;
 	}
+	public double calcularPrecio() {
+		return 0;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
