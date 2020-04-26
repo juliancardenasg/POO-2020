@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 public class GestionCliente {
 	//----------------6.Ver listado de Clientes registrados en el sistema-----------
-	//Recibe una lista de clientes y los imprime por pantalla 
+	//Recibe una lista de clientes y los imprime por pantalla
 	//por medio de la sobrescritura del método toString en la clase CLiente.
 	public void verClientes(ArrayList<Cliente> clientes) {
 		for(Cliente cliente : clientes) {
 			System.out.println(cliente.toString());
 		}//rof
 	}
-	
+
 	//------------------------------7.Insertar Cliente------------------------------
 	//Inserta un cliente y retorna true si sí se ingresó. False de lo contrario.
 	public boolean insertarCliente(ArrayList<Cliente> clientes, Cliente clienteAIngresar) {
@@ -24,11 +24,11 @@ public class GestionCliente {
 				return false;
 			}//fi
 		}//rof
-		
+
 		clientes.add(clienteAIngresar);
 		return true;
 	}
-	
+
 	//-----------------------------8.Modificar Cliente-----------------------------
 	//Retorna true si puede modificar un cliente. False de lo contrario.
 	public boolean modificarCliente(ArrayList<Cliente> clientes, long cedula) {
@@ -36,10 +36,10 @@ public class GestionCliente {
 			if(cliente.getCedula() == cedula) {
 				System.out.println(cliente.toString());
 				Scanner sc = new Scanner(System.in);
-				
+
 				System.out.println("Que cliente desea modificar?[1,2,3]: ");
 				int datoAModificar = sc.nextInt();
-				
+
 				switch (datoAModificar) {
 				case 1://Modifica nombre completo
 					System.out.println("Ingrese el nombre a modificar: ");
@@ -60,11 +60,11 @@ public class GestionCliente {
 					System.out.println("dato incorrecto, vuelva a intentar.");
 					break;
 				}
-				
+
 				return true;
 			}//fi
 		}//rof
-		
+
 		System.out.println("El cliente no se encuentra registrado.");
 		return false;
 	}
@@ -78,65 +78,33 @@ public class GestionCliente {
 				return false;
 			}//fi
 		}//rof
-		
-		//En caso de que lo anterior no pase, procedemos a 
+
+		//En caso de que lo anterior no pase, procedemos a
 		//buscar la cédula en la lista de clientes con el siguiente for
 		for(Cliente cliente : clientes) {
 			if(cliente.getCedula() == cedulaAEliminar) {
 				Scanner sc = new Scanner(System.in);
-				
+
 				System.out.println("Seguro de querer eliminar el cliente?[S,N]: ");
 				String respuesta = sc.next();
-				
+
 				switch (respuesta) {
 				case "s":
 					clientes.remove(cliente);
 					System.out.println("Cliente eliminado exitosamente.");
-					return true;
 					break;
 				case "S":
 					clientes.remove(cliente);
 					System.out.println("Cliente eliminado exitosamente.");
-					return true;
 					break;
 				default:
 					break;
-					return false;
 				}
 			}//fi
 		}//rof
-		
+
 		System.out.println("Cliente no encontrado.");
-		return false;		
-		
+		return false;
+
 	}
 }
-
-/*
-Buenas tardes,
-
-Ya cree los tres diferentes espacios de trabajo (tres branches/ramas), distribuidos asi para Cliente:
-Nombre del responsable: Edgar Baquero
-
-Tener en cuenta lo siguiente:
-- Si usted va a hacer cambios tanto en la entidad (Cliente) como en el control
-(GestionCliente) solo hacer commits en esta rama: "cliente", y cuando tenga
-la version final (ultimo commit), avisar a Julian para que el haga el respectivo
-merge a la rama final (master). Haga cuantos commits desee, pero no olvide
-comentar cada uno de ellos. En resumen, haga los cambios en su repo local, hasta
-que tenga la versión final de esta rama, no avisar.
-- Comunicación por el grupo de Whatsapp para cualquier cosa.
-- Si tiene alguna duda acerca de Git o GitHub, no dude con contactarme, yo le
-ayudo a configurar su repositorio local al remoto y viceversa.
-- Tenga en cuenta el buen manejo de los commits.
-- Como mencione anteriormente, solo gestione y edite sus dos correspondientes
-archivos, despues todos nos encargamos de fusionar y hacer los respectivos
-cambios.
-- Fecha de entrega de esta rama (cliente): Viernes 27 de Marzo
-- No borrar estos comentarios
-
-
-Julian,
-
-
-*/
