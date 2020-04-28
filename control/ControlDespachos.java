@@ -353,6 +353,58 @@ public class ControlDespachos {
     public boolean eliminarCliente(long cedulaAEliminar) {
         return this.gestionCliente.eliminarCliente(this.listaClientes, this.pedidos, cedulaAEliminar);
     }
+    
+    //SEGUNDA FASE
+    
+    
+    public Set<Producto> productosFruver(){
+        Set<Producto> resp= new HashSet<>();
+        for(Producto pro:this.listaProductos) {
+            if(pro instanceof Fruver)
+            {
+                resp.add(pro);
+            }
+        }
+        return resp;
+    }
+    //b//
+    public Set<Pedido>pedidosAseo(){
+        Set<Pedido> resp=new HashSet<>();
+        for(Pedido pe:this.pedidos)
+        {
+            if(pe.getProductoSolicitado() instanceof Aseo)
+                resp.add(pe);
+        }
+        return resp;
+    }
+    //c//
+    public double precioPedidosDeAseoPorTipo(TipoProducto tipoABuscar) {
+        double resp=0;
+            //Set<Pedido> pe=this.pedidosAseo();
+       
+        for(Pedido pe:this.pedidos)
+        {
+            if(pe.getProductoSolicitado() instanceof Aseo)
+            resp=resp+pe.getProductoSolicitado().getPrecio();
+    }
+    return resp;
+   
+}
+    
+    public String todosLosServiciosAdicionalesDeEnvioPrime(TipoTransporte tipo) {
+    	String a= null;
+    	for(ServicioAdicional sera:this.serviciosAdicionales)
+    	{
+        if(sera instanceof EnvioPrime) {
+            if(((EnvioPrime) sera).getTipo().equals(tipo))
+            {
+                a=("\n"+sera.getCodigoServicio()+"\n"+sera.getPrecio()+"\n"+sera.getNombreServicio()+"\n"+((EnvioPrime)sera).getDistancia()+"\n"+((EnvioPrime)sera).getTipo()+"\n"+((EnvioPrime)sera).getNumeroCajas());
+            }
+        }
+           
+    }
+    return a;
+}
 
 
 
