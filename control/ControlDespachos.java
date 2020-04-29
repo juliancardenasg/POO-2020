@@ -18,6 +18,7 @@ public class ControlDespachos {
     private ArrayList<Cliente> listaClientes = new ArrayList <>();
     private ArrayList<Producto> listaProductos = new ArrayList <>();
     private ArrayList<Pedido> pedidos = new ArrayList <>();
+    private ArrayList<ServicioAdicional> serviciosAdicionales = new ArrayList<>();   
 
     public ControlDespachos() {
         super();
@@ -392,21 +393,29 @@ public class ControlDespachos {
 }
     
     public String todosLosServiciosAdicionalesDeEnvioPrime(TipoTransporte tipo) {
-    	String a= null;
-    	for(ServicioAdicional sera:this.serviciosAdicionales)
-    	{
-        if(sera instanceof EnvioPrime) {
-            if(((EnvioPrime) sera).getTipo().equals(tipo))
-            {
-                a=("\n"+sera.getCodigoServicio()+"\n"+sera.getPrecio()+"\n"+sera.getNombreServicio()+"\n"+((EnvioPrime)sera).getDistancia()+"\n"+((EnvioPrime)sera).getTipo()+"\n"+((EnvioPrime)sera).getNumeroCajas());
+        String a = " ";
+        for (ServicioAdicional sera : this.serviciosAdicionales) {
+            if (sera instanceof EnvioPrime) {
+                if (((EnvioPrime) sera).getTipo().equals(tipo)) {
+                    if(a==" ") {
+                        a = ("\n" + sera.getCodigoServicio() + "\n" + sera.getPrecio() + "\n" + sera.getNombreServicio()
+                        + "\n" + ((EnvioPrime) sera).getDistancia() + "\n" + ((EnvioPrime) sera).getTipo() + "\n"
+                        + ((EnvioPrime) sera).getNumeroCajas());
+                    }
+                    else
+                    {
+                        a = (a+"\n" + sera.getCodigoServicio() + "\n" + sera.getPrecio() + "\n" + sera.getNombreServicio()
+                        + "\n" + ((EnvioPrime) sera).getDistancia() + "\n" + ((EnvioPrime) sera).getTipo() + "\n"
+                        + ((EnvioPrime) sera).getNumeroCajas());
+                    }
+                    
+                }
             }
+
+ 
+
         }
-           
+        return a;
     }
-    return a;
-}
-
-
-
 
 }
