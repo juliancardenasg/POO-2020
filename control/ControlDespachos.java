@@ -79,7 +79,8 @@ public class ControlDespachos {
     public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
-
+    
+    /*
     public boolean reservarPedido(long cedula, long pid, Producto producto) {
 
 
@@ -88,7 +89,10 @@ public class ControlDespachos {
 
         return false;
     }
-
+    */
+    
+    
+    //JULIAN
     public boolean existePedido(long numeroPedido) {
         for (Pedido aux : this.pedidos) {
             if (aux.getNumeroPedido() == numeroPedido) {
@@ -97,7 +101,8 @@ public class ControlDespachos {
         }
         return false;
     }
-
+    
+    //JULIAN
     public boolean autoGenerarPedido(long cedula, long pid) {	//Funcion que asigna un numero pedido aleatorio a un pedido que esta por reservar
         int upperbound = 9999;									//Numero de pedido de cuatro digitos
         Random aleatorio = new Random();
@@ -122,7 +127,8 @@ public class ControlDespachos {
 
         return false;
     }
-
+    
+    //JULIAN
     public boolean validacionPedido(Pedido pedido) {
 
     	Long temp = pedido.getSolicitante().getCedula();
@@ -143,6 +149,9 @@ public class ControlDespachos {
 
         return false;
     }
+    
+    	
+   //JULIAN 
 
     public boolean validacionDePedido2(Pedido pedido) {
 
@@ -158,12 +167,16 @@ public class ControlDespachos {
 
            return false;
     }
+    
+    
 
     public void solicitarServiciosAdicionales(long cedula, long pid) {
         System.out.println("Bienvenido al menu: Servicios Adicionales");
 
     }
 
+    
+    //RICHARD
     public double costoPedido(long cedula, long pid, Producto producto) {
         double costo = 0;
         costo = producto.getPrecio() + producto.getIva();
@@ -191,8 +204,9 @@ public class ControlDespachos {
 
     }
 
-    //PARTE DE RICHARD
-//11
+    
+
+    //JULIAN
     public void ModificarDatosDeUnPedido(long numPedido) throws ParseException {
         Scanner sc = new Scanner(System.in);
 
@@ -225,6 +239,8 @@ public class ControlDespachos {
         }
         calcularNuevoPrecio(numPedido);
     }
+    
+    //JULIAN
 
     public void calcularNuevoPrecio(long numPedido) {
         for (Pedido ped : this.pedidos) {
@@ -244,7 +260,8 @@ public class ControlDespachos {
             }
         }
     }
-
+    
+   
     public void cambiarFecha(long numPedido) throws ParseException {
 
         String fecha;
@@ -276,7 +293,10 @@ public class ControlDespachos {
 
         }
     }
-
+    
+    
+    //JULIAN
+    
     public void cambiarNombre(long numPedido)//listo
     {
         String nom;
@@ -290,6 +310,9 @@ public class ControlDespachos {
             }
         }
     }
+    
+    
+    
 
     public void cambiarServicios(long numPedido) {
         String servicio;
@@ -300,6 +323,8 @@ public class ControlDespachos {
     }
 
     //12//
+    
+    //JULIAN
     public boolean eliminarReservaDeUnPedido(long numPedido) {
         String confi;
         Scanner sc = new Scanner(System.in);
@@ -330,7 +355,8 @@ public class ControlDespachos {
 
         }
     }
-
+    
+    //RICHARD
     public int verListadodePedidosParaProductoyFecha (long pid, Calendar fecha) {
     	int cont = 0;
     	for(Pedido aux : this.pedidos) {
@@ -343,6 +369,9 @@ public class ControlDespachos {
     	}
     	return cont;
     }
+    
+    
+    //CRUID (NO SE PRUEBEN)
 
 
     public void imprimirProductos(){
@@ -374,6 +403,46 @@ public class ControlDespachos {
     public boolean eliminarCliente(long cedulaAEliminar) {
         return this.gestionCliente.eliminarCliente(this.mapaClientes, this.pedidos, cedulaAEliminar);
     }
+    
+    
+    
+    //RICHARD
+    
+	public Set<Producto> productosFruver(){
+	    Set<Producto> resp= new HashSet<>();
+	    for(Producto pro:this.listaProductos) {
+	        if(pro instanceof Fruver)
+	        {
+	            resp.add(pro);
+	        }
+	    }
+	    return resp;
+	}
+	//RICHARD
+	public Set<Pedido>pedidosAseo(){
+	    Set<Pedido> resp=new HashSet<>();
+	    for(Pedido pe:this.pedidos)
+	    {
+	        if(pe.getProductoSolicitado() instanceof Aseo)
+	            resp.add(pe);
+	    }
+	    return resp;
+	}
+	//RICHARD
+	public double precioPedidosDeAseoPorTipo(TipoProducto tipoABuscar) {
+	    double resp=0;
+	        //Set<Pedido> pe=this.pedidosAseo();
+	   
+	    for(Pedido pe:this.pedidos)
+	    {
+	        if(pe.getProductoSolicitado() instanceof Aseo)
+	        resp=resp+pe.getProductoSolicitado().getPrecio();
+	}
+	return resp;
+	
+	}
+	
+
 
 }
 
