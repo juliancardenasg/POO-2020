@@ -71,40 +71,40 @@ public class GestionCliente {
 	}
 	//---------------------------9.Eliminar Cliente------------------------------
 	//Retorna true si se pudo eliminar un cliente. False de lo contrario.
-	public boolean eliminarCliente(HashMap<Long,Cliente> clientes, ArrayList<Pedido> pedidos, long cedulaAEliminar) {
+	public boolean eliminarCliente(HashMap<Long,Cliente> mapaClientes, ArrayList<Pedido> pedidos, long cedulaAEliminar) {
 		// El siguiente for verifica que no haya un pedido asociado a un cliente
+		
+		//buscamos si existe un cliente en la lista de clientes con la cédula dada:
+		Cliente clienteBuscado = mapaClientes.get(cedulaAEliminar);
+		
 		for(Pedido pedido : pedidos){
-			if(pedido.getSolicitante().getCedula() == cedulaAEliminar) {
+			if(pedido.getSolicitante() == clienteBuscado) {
 				System.out.println("El cliente esta asociado a un pedido. No se puede eliminar.");
 				return false;
 			}//fi
 		}//rof
 
-		//En caso de que lo anterior no pase, procedemos a
-		//buscar la cédula en la lista de clientes con el siguiente for
-		for(Cliente cliente : clientes) {
-			if(cliente.getCedula() == cedulaAEliminar) {
-				Scanner sc = new Scanner(System.in);
+		if(clienteBuscado != null) {
+			Scanner sc = new Scanner(System.in);
 
-				System.out.println("Seguro de querer eliminar el cliente?[S,N]: ");
-				String respuesta = sc.next();
+			System.out.println("Seguro de querer eliminar el cliente?[S,N]: ");
+			String respuesta = sc.next();
 
-				switch (respuesta) {
-				case "s":
-					clientes.remove(cliente);
-					System.out.println("Cliente eliminado exitosamente.");
-					break;
-				case "S":
-					clientes.remove(cliente);
-					System.out.println("Cliente eliminado exitosamente.");
-					break;
-				default:
-					break;
-				}
-			}//fi
-		}//rof
-
-		System.out.println("Cliente no encontrado.");
+			switch (respuesta) {
+			case "s":
+				mapaClientes.remove(clienteBuscado);
+				System.out.println("Cliente eliminado exitosamente.");
+				break;				
+			case "S":
+				mapaClientes.remove(clienteBuscado);
+				System.out.println("Cliente eliminado exitosamente.");
+				break;
+			default:
+				break;
+			}
+			return true;
+		}		
+		System.out.println("Cliente no encontrado, o no eliminado.\n");
 		return false;
 
 	}

@@ -26,8 +26,8 @@ public class GestionProducto {
 		//int index = getIndexProducto(listaProductos,pid);
 		if(mapaProductos.get(pid) == null)
 		{
-
-			if( pid>=100000 && pid <= 9999999)
+			String pidStr = Long.toString(pid);
+			if( pidStr.length() == 7)
 			{
 				Producto nuevo_producto = new Producto();
 				nuevo_producto.setNombreComercial(nombreComercial);
@@ -92,19 +92,16 @@ public class GestionProducto {
 
 	}
 
-	public boolean eliminar_un_producto(HashMap<Long,Producto> mapaProductos,long pid_de_baja, HashMap<Long,Pedido> mapaPedidos)
+	public boolean eliminar_un_producto(HashMap<Long,Producto> mapaProductos,long pid_de_baja, ArrayList<Pedido> pedidos)
 	{
-		if(mapaProductos.get(pid_de_baja) != null) {	
-			for(long clavePedido: mapaPedidos.keySet())
-			{
-				Pedido pedidoAux = mapaPedidos.get(clavePedido);
-				Producto productoIdAux = pedidoAux.getProductoSolicitado();
-				if(productoIdAux == mapaProductos.get(pid_de_baja)) {
+		if(mapaProductos.get(pid_de_baja) != null) {
+			for(Pedido pedido: pedidos) {
+				if(pedido.getProductoSolicitado() == mapaProductos.get(pid_de_baja)) {
 					return false;
 				}
+				mapaProductos.remove(pid_de_baja);
+				return true;	
 			}
-			mapaProductos.remove(pid_de_baja);
-			return true;	
 		}
 		return false;
 	}
