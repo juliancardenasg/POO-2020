@@ -21,7 +21,8 @@ public class GestionCliente {
 
 	//------------------------------7.Insertar Cliente------------------------------
 	//Inserta un cliente y retorna true si sí se ingresó. False de lo contrario.
-	public boolean insertarCliente(HashMap<Long, Cliente> mapaClientes, Cliente clienteAIngresar, long cedula) {
+	public boolean insertarCliente(HashMap<Long, Cliente> mapaClientes, Cliente clienteAIngresar) {
+		long cedula = clienteAIngresar.getCedula();
 		if(mapaClientes.get(cedula) == null) {
 			mapaClientes.put(cedula,clienteAIngresar);
 			return true;	

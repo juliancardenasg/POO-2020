@@ -8,7 +8,7 @@ public class Fruver extends Producto{
 	//---------------------Constructors------------------------
 	public Fruver(long pid, String nombreComercial, double precio, String tienda, boolean esOrganico,
 			double impuestoLocal, String ascienda) {
-		super(pid, nombreComercial, precio, tienda);
+		super(pid,nombreComercial, precio, tienda);
 		this.esOrganico = esOrganico;
 		this.impuestoLocal = impuestoLocal;
 		this.ascienda = ascienda;
@@ -43,13 +43,4 @@ public class Fruver extends Producto{
 		}
 		return precioFruver;
 	}
-	
-	
-	
-
-	
-	
-	
-	
-	
 }
