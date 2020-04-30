@@ -53,12 +53,4 @@ public class Producto {
 	public void setTienda(String tienda) {
 		this.tienda = tienda;
 	}
-	//--------------------------------methods--------------------------------
-	public double calcularPrecio() {
-		double precio = 0;
-		precio = this.precio + this.precio*this.iva;
-
-		return precio;
-	}
-	
 }

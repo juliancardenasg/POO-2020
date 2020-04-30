@@ -3,38 +3,36 @@ package control;
 import entities.Producto;
 import entities.Pedido;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestionProducto {
 
 
-	public void imprimirProductos(HashMap<Long, Producto> mapaProductos)
+	public void imprimirProductos(ArrayList<Producto> listaProductos)
 	{
-		if(!mapaProductos.isEmpty()) {
-			for(long claveProducto: mapaProductos.keySet() ){
-				System.out.println(mapaProductos.get(claveProducto).toString());
-			}	
+		for(Producto aux_prod: listaProductos )
+		{
+			System.out.println(aux_prod.toString());
 		}
 	}
 
 
-	public boolean insertar_un_producto(HashMap<Long, Producto> mapaProductos,long pid, String nombreComercial,double precio, String tienda)
+	public boolean insertar_un_producto(ArrayList<Producto> listaProductos,long pid, String nombreComercial,double precio, String tienda)
 	{
-		
-		//int index = getIndexProducto(listaProductos,pid);
-		if(mapaProductos.get(pid) == null)
+		int index = getIndexProducto(listaProductos,pid);
+		if(index ==-1)
 		{
-			String pidStr = Long.toString(pid);
-			if( pidStr.length() == 7)
+
+			if( pid>=100000 && pid <= 9999999)
 			{
 				Producto nuevo_producto = new Producto();
+				nuevo_producto.setPid(pid);
 				nuevo_producto.setNombreComercial(nombreComercial);
 				nuevo_producto.setPrecio(precio);
 				nuevo_producto.setTienda(tienda);
 				nuevo_producto.setIva(precio);
-				mapaProductos.put(pid,nuevo_producto);
+				listaProductos.add(nuevo_producto);
 				return true;
 
 			}
@@ -47,18 +45,14 @@ public class GestionProducto {
 
 	}
 
-	public boolean modificar_un_producto(HashMap<Long, Producto> mapaProductos,long pid)
+	public boolean modificar_un_producto(ArrayList<Producto> listaProductos,long pid)
 	{
-		//int index = getIndexProducto(listaProductos,pid);
+		int index = getIndexProducto(listaProductos,pid);
 		Scanner sc = new Scanner(System.in);
 
-        if(mapaProductos.get(pid) != null){
-        	Producto productoTemp =mapaProductos.get(pid) ;  
-        	
+        if(index != -1){
         	System.out.println("que desea modificar?");
-        	
-        	productoTemp.toString();
-        	
+        	listaProductos.get(index).toString();
         	System.out.println("\n:");
         	int opcion = sc.nextInt();
         	switch(opcion)
@@ -66,18 +60,18 @@ public class GestionProducto {
         	case 1:
         		System.out.println("\ndeme el nuevo nombre del producto:");
         		String nombreComercial = sc.next();
-        		productoTemp.setNombreComercial(nombreComercial);
+        		listaProductos.get(index).setNombreComercial(nombreComercial);
         		break;
         	case 2:
         		System.out.println("\ndeme el nuevo precio del producto:");
         		double precio = sc.nextDouble();
-        		productoTemp.setPrecio(precio);
-        		productoTemp.setIva(precio);
+        		listaProductos.get(index).setPrecio(precio);
+        		listaProductos.get(index).setIva(precio);
         		break;
         	case 3:
         		System.out.println("\ndeme el nombre de la nueva tienda:");
         		String tienda = sc.next();
-        		productoTemp.setTienda(tienda);
+        		listaProductos.get(index).setTienda(tienda);
         		break;
         	default:
         		System.out.println("\nopcion invalida");
@@ -92,21 +86,21 @@ public class GestionProducto {
 
 	}
 
-	public boolean eliminar_un_producto(HashMap<Long,Producto> mapaProductos,long pid_de_baja, ArrayList<Pedido> pedidos)
+	public boolean eliminar_un_producto(ArrayList<Producto> listaProductos,long pid_de_baja, ArrayList<Pedido> pedidos)
 	{
-		if(mapaProductos.get(pid_de_baja) != null) {
-			for(Pedido pedido: pedidos) {
-				if(pedido.getProductoSolicitado() == mapaProductos.get(pid_de_baja)) {
-					return false;
-				}
-				mapaProductos.remove(pid_de_baja);
-				return true;	
+		int index = getIndexProducto(listaProductos,pid_de_baja);
+		for(Pedido pedido : pedidos)
+		{
+			if(pedido.getProductoSolicitado().getPid() == pid_de_baja)
+			{
+				return false;
 			}
 		}
-		return false;
+		listaProductos.remove(index);
+		return true;
 	}
 
-/*
+
     private int getIndexProducto (ArrayList<Producto> listaProductos,long idProducto)
     {
         for (int i = 0; i < listaProductos.size() ; i++)
@@ -118,7 +112,7 @@ public class GestionProducto {
         }
         return -1;
     }
-*/
+
 
 
 

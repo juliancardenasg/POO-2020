@@ -4,20 +4,19 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Scanner;
 import entities.Cliente;
 import entities.Producto;
 import entities.Pedido;
 import java.text.ParseException;
 import java.util.Random;
-import java.util.HashMap;
+
 public class ControlDespachos {
 
     private GestionCliente gestionCliente;
     private GestionProducto gestionProducto;
-    private HashMap<Long, Cliente> mapaClientes = new HashMap();
-    private HashMap<Long, Producto> mapaProductos = new HashMap();
+    private ArrayList<Cliente> listaClientes = new ArrayList <>();
+    private ArrayList<Producto> listaProductos = new ArrayList <>();
     private ArrayList<Pedido> pedidos = new ArrayList <>();
 
     public ControlDespachos() {
@@ -25,12 +24,12 @@ public class ControlDespachos {
     }
 
     public ControlDespachos(GestionCliente gestionCliente, GestionProducto gestionProducto,
-    		HashMap<Long, Cliente> mapaClientes, HashMap<Long, Producto> mapaProductos, ArrayList<Pedido> pedidos) {
+            ArrayList<Cliente> listaClientes, ArrayList<Producto> listaProductos, ArrayList<Pedido> pedidos) {
         super();
         this.gestionCliente = gestionCliente;
         this.gestionProducto = gestionProducto;
-        this.mapaClientes = mapaClientes;
-        this.mapaProductos = mapaProductos;
+        this.listaClientes = listaClientes;
+        this.listaProductos = listaProductos;
         this.pedidos = pedidos;
     }
 
@@ -50,20 +49,20 @@ public class ControlDespachos {
         this.gestionProducto = gestionProducto;
     }
 
-    public HashMap<Long, Cliente> getMapaClientes() {
-        return mapaClientes;
+    public ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
     }
 
-    public void setMapaClientes(HashMap<Long, Cliente> mapaClientes) {
-        this.mapaClientes = mapaClientes;
+    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
     }
 
-    public HashMap<Long, Producto> getMapaProductos() {
-        return mapaProductos;
+    public ArrayList<Producto> getListaProductos() {
+        return listaProductos;
     }
 
-    public void setmapaProductos(HashMap<Long, Producto> mapaProductos) {
-        this.mapaProductos = mapaProductos;
+    public void setListaProductos(ArrayList<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
     }
 
     public ArrayList<Pedido> getPedidos() {
@@ -96,21 +95,14 @@ public class ControlDespachos {
         int upperbound = 9999;									//Numero de pedido de cuatro digitos
         Random aleatorio = new Random();
 
-        /*for (Cliente aux : this.mapaClientes) {
-            for (Producto aux2 : this.mapaProductos) {
+        for (Cliente aux : this.listaClientes) {
+            for (Producto aux2 : this.listaProductos) {
                 if (cedula == aux.getCedula() && pid == aux2.getPid()) {		//Se comprueba que existe cliente y producto
                     long long_random = (long) aleatorio.nextInt(upperbound);
                     if (existePedido(long_random) == false) {				//Se comprueba que el nª de pedido no haya sido asignado
                         return true;
                     }
                 }
-            }
-        }*/
-
-        if (this.mapaClientes.get(cedula)!=null && this.mapaProductos.get(pid)!= null) {		//Se comprueba que existe cliente y producto
-            long long_random = (long) aleatorio.nextInt(upperbound);
-            if (existePedido(long_random) == false) {				//Se comprueba que el nª de pedido no haya sido asignado
-                return true;
             }
         }
 
@@ -340,33 +332,33 @@ public class ControlDespachos {
 
 
     public void imprimirProductos(){
-        this.gestionProducto.imprimirProductos(this.mapaProductos);
+        this.gestionProducto.imprimirProductos(this.listaProductos);
     }
     public boolean insertar_un_producto(long pid, String nombreComercial,double precio, String tienda){
-        return this.gestionProducto.insertar_un_producto(this.mapaProductos,pid, nombreComercial,precio, tienda);
+        return this.gestionProducto.insertar_un_producto(this.listaProductos,pid, nombreComercial,precio, tienda);
     }
 
     public boolean modificar_un_producto(long pid){
-        return this.gestionProducto.modificar_un_producto(this.mapaProductos,pid);
+        return this.gestionProducto.modificar_un_producto(this.listaProductos,pid);
     }
     public boolean eliminar_un_producto(long pid_de_baja){
-        return this.gestionProducto.eliminar_un_producto(this.mapaProductos, pid_de_baja, pedidos);
+        return this.gestionProducto.eliminar_un_producto(this.listaProductos, pid_de_baja, pedidos);
     }
 
 
     public void verClientes() {
-        this.gestionCliente.verClientes(this.mapaClientes);
+        this.gestionCliente.verClientes(this.listaClientes);
     }
 
     public boolean insertarCliente( Cliente clienteAIngresar) {
-        return this.gestionCliente.insertarCliente(this.mapaClientes, clienteAIngresar);
+        return this.gestionCliente.insertarCliente(this.listaClientes, clienteAIngresar);
     }
 
     public boolean modificarCliente(long cedula) {
-        return this.gestionCliente.modificarCliente(this.mapaClientes, cedula);
+        return this.gestionCliente.modificarCliente(this.listaClientes, cedula);
     }
     public boolean eliminarCliente(long cedulaAEliminar) {
-        return this.gestionCliente.eliminarCliente(this.mapaClientes, this.pedidos, cedulaAEliminar);
+        return this.gestionCliente.eliminarCliente(this.listaClientes, this.pedidos, cedulaAEliminar);
     }
 
 
