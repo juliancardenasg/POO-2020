@@ -2,19 +2,20 @@ package entities;
 
 public class Producto {
 
-
-	protected String nombreComercial;
-	protected double precio;
-	protected double iva;
-	protected String tienda;
+	private long pid;
+	private String nombreComercial;
+	private double precio;
+	private double iva;
+	private String tienda;
 
 	@Override
 	public String toString() {
-		return "Producto \n" + ", \n(1)nombreComercial=" + nombreComercial + ", \n(2)precio=" + precio + ", \n(2)iva=" + iva
+		return "Producto \n(imposible de modificar)pid=" + pid + ", \n(1)nombreComercial=" + nombreComercial + ", \n(2)precio=" + precio + ", \n(2)iva=" + iva
 				+ ", \n(3)tienda=" + tienda ;
 	}
 
-	public Producto(String nombreComercial, double precio, String tienda) {
+	public Producto(long pid, String nombreComercial, double precio, String tienda) {
+		this.pid = pid;
 		this.nombreComercial = nombreComercial;
 		this.precio = precio;
 		this.iva = precio*0.19f;
@@ -22,6 +23,12 @@ public class Producto {
 	}
 	public Producto() {	}
 
+	public long getPid() {
+		return pid;
+	}
+	public void setPid(long pid) {
+		this.pid = pid;
+	}
 	public String getNombreComercial() {
 		return nombreComercial;
 	}
@@ -53,23 +60,5 @@ public class Producto {
 
 		return precio;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
