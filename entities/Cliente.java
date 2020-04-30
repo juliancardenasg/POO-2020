@@ -2,13 +2,11 @@ package entities;
 
 public class Cliente {
 	//----------------Attributes------------------------
-	private long cedula;
 	private String nombreCompleto;
 	private long telefonoContacto;
 	private String direccion;
 	//----------------Constructors------------------------
-	public Cliente(long cedula, String nombreCompleto, long telefonoContacto, String direccion) {
-		this.cedula = cedula;
+	public Cliente(String nombreCompleto, long telefonoContacto, String direccion) {
 		this.nombreCompleto = nombreCompleto;
 		this.telefonoContacto = telefonoContacto;
 		this.direccion = direccion;
@@ -16,13 +14,6 @@ public class Cliente {
 	public Cliente(){}
 
 	//----------------Accessors------------------------
-	public long getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(long cedula) {
-		this.cedula = cedula;
-	}
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}
@@ -45,7 +36,7 @@ public class Cliente {
 	//----------------Methods------------------------
 	@Override
 	public String toString() {
-		return "Cedula: " + this.cedula +"; \n" +
+		return 
 			   "1.Nombre completo: " + this.nombreCompleto+"; \n" +
 			   "2.Telefono de contacto: " + this.telefonoContacto + "; \n" +
 			   "3.Dirección: " + this.direccion + "; \n";
