@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class GestionCliente {
 	//----------------6.Ver listado de Clientes registrados en el sistema-----------
 	//Recibe una lista de clientes y los imprime por pantalla
-	//por medio de la sobrescritura del método toString en la clase CLiente.
+	//por medio de la sobrescritura del m�todo toString en la clase CLiente.
 	public void verClientes(HashMap<Long, Cliente> mapaClientes) {
 		if(!mapaClientes.isEmpty()) {
 			for(long cedulaCliente: mapaClientes.keySet()) {
@@ -20,8 +20,9 @@ public class GestionCliente {
 	}
 
 	//------------------------------7.Insertar Cliente------------------------------
-	//Inserta un cliente y retorna true si sí se ingresó. False de lo contrario.
-	public boolean insertarCliente(HashMap<Long, Cliente> mapaClientes, Cliente clienteAIngresar, long cedula) {
+	//Inserta un cliente y retorna true si s� se ingres�. False de lo contrario.
+	public boolean insertarCliente(HashMap<Long, Cliente> mapaClientes, Cliente clienteAIngresar) {
+		long cedula = clienteAIngresar.getCedula();
 		if(mapaClientes.get(cedula) == null) {
 			mapaClientes.put(cedula,clienteAIngresar);
 			return true;	
@@ -38,7 +39,7 @@ public class GestionCliente {
 				System.out.println(clienteAModificar.toString());
 				Scanner sc = new Scanner(System.in);
 
-				System.out.println("Que cliente desea modificar?[1,2,3]: ");
+				System.out.println("Que dato desea modificar?\n1-nombre\n2-telefono\n3-direccion: ");
 				int datoAModificar = sc.nextInt();
 				switch (datoAModificar) {
 				case 1://Modifica nombre completo
@@ -46,12 +47,12 @@ public class GestionCliente {
 					String nombre = sc.next();
 					clienteAModificar.setNombreCompleto(nombre);
 					break;
-				case 2://Modifica teléfono de contacto
+				case 2://Modifica tel�fono de contacto
 					System.out.println("Ingrese el telefono a modificar: ");
 					long telefono = sc.nextLong();
 					clienteAModificar.setTelefonoContacto(telefono);
 					break;
-				case 3://modifica dirección
+				case 3://modifica direcci�n
 					System.out.println("Ingrese la direccion a modificar: ");
 					String direccion = sc.next();
 					clienteAModificar.setDireccion(direccion);
@@ -74,7 +75,7 @@ public class GestionCliente {
 	public boolean eliminarCliente(HashMap<Long,Cliente> mapaClientes, ArrayList<Pedido> pedidos, long cedulaAEliminar) {
 		// El siguiente for verifica que no haya un pedido asociado a un cliente
 		
-		//buscamos si existe un cliente en la lista de clientes con la cédula dada:
+		//buscamos si existe un cliente en la lista de clientes con la c�dula dada:
 		Cliente clienteBuscado = mapaClientes.get(cedulaAEliminar);
 		
 		for(Pedido pedido : pedidos){

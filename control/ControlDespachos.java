@@ -14,10 +14,10 @@ import java.util.Random;
 import java.util.HashMap;
 public class ControlDespachos {
 
-    private GestionCliente gestionCliente;
-    private GestionProducto gestionProducto;
-    private HashMap<Long, Cliente> mapaClientes = new HashMap();
-    private HashMap<Long, Producto> mapaProductos = new HashMap();
+	 private GestionCliente gestionCliente = new GestionCliente();
+	    private GestionProducto gestionProducto = new GestionProducto();
+	    private HashMap<Long, Cliente> mapaClientes = new HashMap<Long, Cliente>();
+	    private HashMap<Long, Producto> mapaProductos = new HashMap<Long, Producto>();
     private ArrayList<Pedido> pedidos = new ArrayList <>();
 
     public ControlDespachos() {
