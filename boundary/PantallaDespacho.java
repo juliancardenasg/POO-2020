@@ -1,12 +1,20 @@
 package boundary;
 
+import control.*;
+import entities.*;
+import java.util.Calendar;
+import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class PantallaDespacho {
 
+	public static void main(String[] args) throws ParseException {
+
+		System.out.println("Todo el sistema se hara por medio de pruebas unitarias");
+	
+			
+	}
 }
 
-/*
-Buenas tardes a todos,
-Por favor nadie toque este espacio en su rama, este espacio solo es
-modificable en la rama master, es decir, la rama final de todo el proyecto.
-Julian,
-*/
