@@ -11,6 +11,7 @@ public class Pedido {
     private String nombreRepartidor;
     private Cliente solicitante;
     private Producto productoSolicitado;
+    private ArrayList<ServicioAdicional> serviciosAdicionales =new ArrayList<>();
 
 
     public Pedido() {
@@ -76,6 +77,32 @@ public class Pedido {
 	public void setProductoSolicitado(Producto productoSolicitado) {
 		this.productoSolicitado = productoSolicitado;
 	}
+	
+	 public String todosLosServiciosAdicionalesDeEnvioPrime(TipoTransporte tipo) {
+	        String a = " ";
+	        for (ServicioAdicional sera : this.serviciosAdicionales) {
+	            if (sera instanceof EnvioPrime) {
+	                if (((EnvioPrime) sera).getTipo().equals(tipo)) {
+	                    if(a==" ") {
+	                        a = ("\n" + sera.getCodigoServicio() + "\n" + sera.getPrecio() + "\n" + sera.getNombreServicio()
+	                        + "\n" + ((EnvioPrime) sera).getDistancia() + "\n" + ((EnvioPrime) sera).getTipo() + "\n"
+	                        + ((EnvioPrime) sera).getNumeroCajas());
+	                    }
+	                    else
+	                    {
+	                        a = (a+"\n" + sera.getCodigoServicio() + "\n" + sera.getPrecio() + "\n" + sera.getNombreServicio()
+	                        + "\n" + ((EnvioPrime) sera).getDistancia() + "\n" + ((EnvioPrime) sera).getTipo() + "\n"
+	                        + ((EnvioPrime) sera).getNumeroCajas());
+	                    }
+	                    
+	                }
+	            }
+
+	 
+
+	        }
+	        return a;
+	    }
 
 
 
