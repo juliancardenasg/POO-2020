@@ -8,19 +8,16 @@ Integrantes del proyecto:
 - Julian Cárdenas
 - Richard Fonseca
 - Edgar Baquero
-- Ricardo Torres
+- Ricardo T
 
-<<<<<<< HEAD
-Fecha de entrega: 28 de marzo del 2020
-=======
 
 Algunas recomendaciones generales (LEER URGENTE):
 
-1. Ya se crearom los tres diferentes espacios de trabajo (branches/ramas), distribuidos asi:
+1. Ya se crearon los tres diferentes espacios de trabajo (branches/ramas), distribuidos asi:
 Rama de desarrollo: Cliente (control/entinties): Edgar Baquero
 Rama de desarrollo: Producto (control/entities): Ricardo T
 Rama de desarrollo: Pedido (control/entities): Julian Cárdenas y Richard Fonseca
-Rama default : Master : Es la rama final, solo hacer merge cuando se este 200% seguros de los cambios y avisar.
+Rama default : Master : Es la rama final, solo hacer merge cuando se este 100% seguros de los cambios y avisar.
 
 Tener en cuenta lo siguiente:
 
@@ -43,11 +40,12 @@ ayudo a configurar su repositorio local al remoto y viceversa.
 
 - No borrar estos comentarios.
 
+- Para la segunda entrega, se deben corregir los errores de la primera entrega. 
+
 Julian,
 
 
 
 
 
-Fecha de entrega proyecto: 29 de marzo del 2020
->>>>>>> master
+Fecha de entrega proyecto: 30 de abril del 2020

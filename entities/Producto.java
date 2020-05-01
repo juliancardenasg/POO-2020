@@ -13,7 +13,7 @@ public class Producto {
 		return "Producto \n(imposible de modificar)pid=" + pid + ", \n(1)nombreComercial=" + nombreComercial + ", \n(2)precio=" + precio + ", \n(2)iva=" + iva
 				+ ", \n(3)tienda=" + tienda ;
 	}
-	
+
 	public Producto(long pid, String nombreComercial, double precio, String tienda) {
 		this.pid = pid;
 		this.nombreComercial = nombreComercial;
@@ -53,4 +53,12 @@ public class Producto {
 	public void setTienda(String tienda) {
 		this.tienda = tienda;
 	}
+	//--------------------------------methods--------------------------------
+	public double calcularPrecio() {
+		double precio = 0;
+		precio = this.precio + this.precio*this.iva;
+
+		return precio;
+	}
+	
 }

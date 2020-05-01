@@ -4,19 +4,20 @@ import java.util.Scanner;
 
 
 public class Pedido {
-	
+
     private long numeroPedido;
     private Calendar fechaRecibido;
     private boolean pagado;
     private String nombreRepartidor;
     private Cliente solicitante;
     private Producto productoSolicitado;
-    
-    
+    private ArrayList<ServicioAdicional> serviciosAdicionales =new ArrayList<>();
+
+
     public Pedido() {
 		super();
 	}
-    
+
     public Pedido(long numeroPedido, Calendar fechaRecibido, boolean pagado, String nombreRepartidor,
 			Cliente solicitante, Producto productoSolicitado) {
 		super();
@@ -27,7 +28,7 @@ public class Pedido {
 		this.solicitante = solicitante;
 		this.productoSolicitado = productoSolicitado;
 	}
-    
+
 
 	public long getNumeroPedido() {
 		return numeroPedido;
@@ -77,7 +78,32 @@ public class Pedido {
 		this.productoSolicitado = productoSolicitado;
 	}
 	
-    
+	 public String todosLosServiciosAdicionalesDeEnvioPrime(TipoTransporte tipo) {
+	        String a = " ";
+	        for (ServicioAdicional sera : this.serviciosAdicionales) {
+	            if (sera instanceof EnvioPrime) {
+	                if (((EnvioPrime) sera).getTipo().equals(tipo)) {
+	                    if(a==" ") {
+	                        a = ("\n" + sera.getCodigoServicio() + "\n" + sera.getPrecio() + "\n" + sera.getNombreServicio()
+	                        + "\n" + ((EnvioPrime) sera).getDistancia() + "\n" + ((EnvioPrime) sera).getTipo() + "\n"
+	                        + ((EnvioPrime) sera).getNumeroCajas());
+	                    }
+	                    else
+	                    {
+	                        a = (a+"\n" + sera.getCodigoServicio() + "\n" + sera.getPrecio() + "\n" + sera.getNombreServicio()
+	                        + "\n" + ((EnvioPrime) sera).getDistancia() + "\n" + ((EnvioPrime) sera).getTipo() + "\n"
+	                        + ((EnvioPrime) sera).getNumeroCajas());
+	                    }
+	                    
+	                }
+	            }
+
+	 
+
+	        }
+	        return a;
+	    }
+
+
 
 }
-

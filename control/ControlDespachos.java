@@ -4,32 +4,42 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 import entities.Cliente;
 import entities.Producto;
 import entities.Pedido;
 import java.text.ParseException;
 import java.util.Random;
-
+import java.util.HashMap;
 public class ControlDespachos {
 
-    private GestionCliente gestionCliente = new GestionCliente();
-    private GestionProducto gestionProducto = new GestionProducto();
-    private ArrayList<Cliente> listaClientes = new ArrayList <>();
-    private ArrayList<Producto> listaProductos = new ArrayList <>();
+	 private GestionCliente gestionCliente = new GestionCliente();
+	    private GestionProducto gestionProducto = new GestionProducto();
+	    private HashMap<Long, Cliente> mapaClientes = new HashMap<Long, Cliente>();
+	    private HashMap<Long, Producto> mapaProductos = new HashMap<Long, Producto>();
     private ArrayList<Pedido> pedidos = new ArrayList <>();
 
     public ControlDespachos() {
         super();
     }
 
-    public ControlDespachos(GestionCliente gestionCliente, GestionProducto gestionProducto) {
-            
+    public ControlDespachos(GestionCliente gestionCliente, GestionProducto gestionProducto,
+    		HashMap<Long, Cliente> mapaClientes, HashMap<Long, Producto> mapaProductos, ArrayList<Pedido> pedidos) {
         super();
         this.gestionCliente = gestionCliente;
         this.gestionProducto = gestionProducto;
+        this.mapaClientes = mapaClientes;
+        this.mapaProductos = mapaProductos;
+        this.pedidos = pedidos;
     }
-
+    
+    public ControlDespachos(GestionCliente gestionCliente, GestionProducto gestionProducto{
+    	super();
+    	this.gestionCliente = gestionCliente;
+    	this.gestionProducto = gestionProducto;
+    }
+  
     public GestionCliente getGestionCliente() {
         return gestionCliente;
     }
@@ -46,20 +56,20 @@ public class ControlDespachos {
         this.gestionProducto = gestionProducto;
     }
 
-    public ArrayList<Cliente> getListaClientes() {
-        return listaClientes;
+    public HashMap<Long, Cliente> getMapaClientes() {
+        return mapaClientes;
     }
 
-    public void setListaClientes(ArrayList<Cliente> listaClientes) {
-        this.listaClientes = listaClientes;
+    public void setMapaClientes(HashMap<Long, Cliente> mapaClientes) {
+        this.mapaClientes = mapaClientes;
     }
 
-    public ArrayList<Producto> getListaProductos() {
-        return listaProductos;
+    public HashMap<Long, Producto> getMapaProductos() {
+        return mapaProductos;
     }
 
-    public void setListaProductos(ArrayList<Producto> listaProductos) {
-        this.listaProductos = listaProductos;
+    public void setmapaProductos(HashMap<Long, Producto> mapaProductos) {
+        this.mapaProductos = mapaProductos;
     }
 
     public ArrayList<Pedido> getPedidos() {
@@ -69,19 +79,20 @@ public class ControlDespachos {
     public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
+    
+    /*
+    public boolean reservarPedido(long cedula, long pid, Producto producto) {
 
-    public Pedido reservarPedido(long cedula, Producto producto) {
-    	Pedido aux = null;
-    	if(existePedido(producto.getPid()) == true) {
-    		aux.setNumeroPedido(autoGenerarPedido(cedula, producto.getPid()));
-    			System.out.println("Usted reservo un pedido correctamente");
-    				}
-    	else {
-    		System.out.println("Hay un error con la reserva de su pedido. Compruebe sus datos");
-    	}  	
-    	return aux;
+
+
+
+
+        return false;
     }
-
+    */
+    
+    
+    //JULIAN
     public boolean existePedido(long numeroPedido) {
         for (Pedido aux : this.pedidos) {
             if (aux.getNumeroPedido() == numeroPedido) {
@@ -90,25 +101,34 @@ public class ControlDespachos {
         }
         return false;
     }
-
-    public long autoGenerarPedido(long cedula, long pid) {	//Funcion que asigna un numero pedido aleatorio a un pedido que esta por reservar
+    
+    //JULIAN
+    public boolean autoGenerarPedido(long cedula, long pid) {	//Funcion que asigna un numero pedido aleatorio a un pedido que esta por reservar
         int upperbound = 9999;									//Numero de pedido de cuatro digitos
         Random aleatorio = new Random();
-        long long_random = 0;
 
-        for (Cliente aux : this.listaClientes) {
-            for (Producto aux2 : this.listaProductos) {
+        /*for (Cliente aux : this.mapaClientes) {
+            for (Producto aux2 : this.mapaProductos) {
                 if (cedula == aux.getCedula() && pid == aux2.getPid()) {		//Se comprueba que existe cliente y producto
-                	long_random = (long) aleatorio.nextInt(upperbound);
+                    long long_random = (long) aleatorio.nextInt(upperbound);
                     if (existePedido(long_random) == false) {				//Se comprueba que el nª de pedido no haya sido asignado
+                        return true;
                     }
                 }
             }
+        }*/
+
+        if (this.mapaClientes.get(cedula)!=null && this.mapaProductos.get(pid)!= null) {		//Se comprueba que existe cliente y producto
+            long long_random = (long) aleatorio.nextInt(upperbound);
+            if (existePedido(long_random) == false) {				//Se comprueba que el nª de pedido no haya sido asignado
+                return true;
+            }
         }
 
-        return long_random;
+        return false;
     }
-
+    
+    //JULIAN
     public boolean validacionPedido(Pedido pedido) {
 
     	Long temp = pedido.getSolicitante().getCedula();
@@ -129,6 +149,9 @@ public class ControlDespachos {
 
         return false;
     }
+    
+    	
+   //JULIAN 
 
     public boolean validacionDePedido2(Pedido pedido) {
 
@@ -138,18 +161,22 @@ public class ControlDespachos {
         cal.setTime(fecha);
         if((pedido.getFechaRecibido().get(Calendar.DAY_OF_MONTH) - cal.get(Calendar.DAY_OF_MONTH)) > 2) {
         	return true;
-        	
+
         }
-        
-           
+
+
            return false;
     }
+    
+    
 
     public void solicitarServiciosAdicionales(long cedula, long pid) {
         System.out.println("Bienvenido al menu: Servicios Adicionales");
 
     }
 
+    
+    //RICHARD
     public double costoPedido(long cedula, long pid, Producto producto) {
         double costo = 0;
         costo = producto.getPrecio() + producto.getIva();
@@ -177,8 +204,9 @@ public class ControlDespachos {
 
     }
 
-    //PARTE DE RICHARD
-//11    
+    
+
+    //JULIAN
     public void ModificarDatosDeUnPedido(long numPedido) throws ParseException {
         Scanner sc = new Scanner(System.in);
 
@@ -211,10 +239,12 @@ public class ControlDespachos {
         }
         calcularNuevoPrecio(numPedido);
     }
+    
+    //JULIAN
 
     public void calcularNuevoPrecio(long numPedido) {
         for (Pedido ped : this.pedidos) {
-         
+
             if (ped.getNumeroPedido() == numPedido) {
                 Scanner sc = new Scanner(System.in);
                 String op;
@@ -230,7 +260,8 @@ public class ControlDespachos {
             }
         }
     }
-
+    
+   
     public void cambiarFecha(long numPedido) throws ParseException {
 
         String fecha;
@@ -249,7 +280,7 @@ public class ControlDespachos {
                 temp = ped.getSolicitante().getCedula();//identifico al cliente
                 temporal = ped.getFechaRecibido();
             }
-            
+
             if (ped.getSolicitante().getCedula() == temp && ped.getNumeroPedido() != numPedido && ped.getFechaRecibido() == temporal)//es el cliente con otro pedido, que tiene la fecha ingresada de cambio
             {
                 System.out.println("YA TIENE OTRO PEDIDO A ESTA FECHA, NO SE LE ASIGANARA");
@@ -262,7 +293,10 @@ public class ControlDespachos {
 
         }
     }
-
+    
+    
+    //JULIAN
+    
     public void cambiarNombre(long numPedido)//listo
     {
         String nom;
@@ -271,11 +305,14 @@ public class ControlDespachos {
         nom = sc.next();
         for (Pedido ped : pedidos) {
             if (ped.getNumeroPedido() == numPedido) {
-                
+
                 ped.setNombreRepartidor(nom);
             }
         }
     }
+    
+    
+    
 
     public void cambiarServicios(long numPedido) {
         String servicio;
@@ -286,6 +323,8 @@ public class ControlDespachos {
     }
 
     //12//
+    
+    //JULIAN
     public boolean eliminarReservaDeUnPedido(long numPedido) {
         String confi;
         Scanner sc = new Scanner(System.in);
@@ -309,20 +348,15 @@ public class ControlDespachos {
         return false;
     }
 
-    
+    //13//
     public void VerListadoDePedidosExistentes() {
-        if(this.pedidos!=null)
-        {
         for (Pedido ped : pedidos) {
             System.out.println("\nCODIGO:" + ped.getNumeroPedido() + "\nFECHA:" + ped.getFechaRecibido() + "\nNOMBRE REPARTIDOR" + ped.getNombreRepartidor() + "\nPRECIO" + costoPedido(ped.getSolicitante().getCedula(),ped.getProductoSolicitado().getPid(), ped.getProductoSolicitado()));
-               
-        }    
+
         }
-        else
-            System.out.println("NO HAY PEDIDOS PARA MOSTRAR");
-        
     }
     
+    //RICHARD
     public int verListadodePedidosParaProductoyFecha (long pid, Calendar fecha) {
     	int cont = 0;
     	for(Pedido aux : this.pedidos) {
@@ -337,38 +371,78 @@ public class ControlDespachos {
     }
     
     
+    //CRUID (NO SE PRUEBEN)
+
+
     public void imprimirProductos(){
-        this.gestionProducto.imprimirProductos(this.listaProductos);
+        this.gestionProducto.imprimirProductos(this.mapaProductos);
     }
     public boolean insertar_un_producto(long pid, String nombreComercial,double precio, String tienda){
-        return this.gestionProducto.insertar_un_producto(this.listaProductos,pid, nombreComercial,precio, tienda);
+        return this.gestionProducto.insertar_un_producto(this.mapaProductos,pid, nombreComercial,precio, tienda);
     }
 
     public boolean modificar_un_producto(long pid){
-        return this.gestionProducto.modificar_un_producto(this.listaProductos,pid);
+        return this.gestionProducto.modificar_un_producto(this.mapaProductos,pid);
     }
     public boolean eliminar_un_producto(long pid_de_baja){
-        return this.gestionProducto.eliminar_un_producto(this.listaProductos, pid_de_baja, pedidos);
+        return this.gestionProducto.eliminar_un_producto(this.mapaProductos, pid_de_baja, pedidos);
     }
-    
-    
+
+
     public void verClientes() {
-        this.gestionCliente.verClientes(this.listaClientes);
+        this.gestionCliente.verClientes(this.mapaClientes);
     }
-    	
+
     public boolean insertarCliente( Cliente clienteAIngresar) {
-        return this.gestionCliente.insertarCliente(this.listaClientes, clienteAIngresar);
+        return this.gestionCliente.insertarCliente(this.mapaClientes, clienteAIngresar);
     }
 
     public boolean modificarCliente(long cedula) {
-        return this.gestionCliente.modificarCliente(this.listaClientes, cedula); 
+        return this.gestionCliente.modificarCliente(this.mapaClientes, cedula);
     }
     public boolean eliminarCliente(long cedulaAEliminar) {
-        return this.gestionCliente.eliminarCliente(this.listaClientes, this.pedidos, cedulaAEliminar);
+        return this.gestionCliente.eliminarCliente(this.mapaClientes, this.pedidos, cedulaAEliminar);
     }
     
     
     
+    //RICHARD
     
+	public Set<Producto> productosFruver(){
+	    Set<Producto> resp= new HashSet<>();
+	    for(Producto pro:this.listaProductos) {
+	        if(pro instanceof Fruver)
+	        {
+	            resp.add(pro);
+	        }
+	    }
+	    return resp;
+	}
+	//RICHARD
+	public Set<Pedido>pedidosAseo(){
+	    Set<Pedido> resp=new HashSet<>();
+	    for(Pedido pe:this.pedidos)
+	    {
+	        if(pe.getProductoSolicitado() instanceof Aseo)
+	            resp.add(pe);
+	    }
+	    return resp;
+	}
+	//RICHARD
+	public double precioPedidosDeAseoPorTipo(TipoProducto tipoABuscar) {
+	    double resp=0;
+	        //Set<Pedido> pe=this.pedidosAseo();
+	   
+	    for(Pedido pe:this.pedidos)
+	    {
+	        if(pe.getProductoSolicitado() instanceof Aseo)
+	        resp=resp+pe.getProductoSolicitado().getPrecio();
+	}
+	return resp;
+	
+	}
+	
+
+
 }
 

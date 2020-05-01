@@ -14,13 +14,11 @@ public class Cliente {
 		this.direccion = direccion;
 	}
 	public Cliente(){}
-	
-	//----------------Accessors------------------------
-	public long getCedula() {
+		//----------------Accessors------------------------
+		public long getCedula() {
 		return cedula;
 	}
-	
-	public void setCedula(long cedula) {
+		public void setCedula(long cedula) {
 		this.cedula = cedula;
 	}
 	public String getNombreCompleto() {
@@ -41,13 +39,12 @@ public class Cliente {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
 	//----------------Methods------------------------
 	@Override
 	public String toString() {
-		return "Cedula: " + this.cedula +"; \n" +
-			   "1.Nombre completo: " + this.nombreCompleto+"; \n" +
-			   "2.Telefono de contacto: " + this.telefonoContacto + "; \n" +
-			   "3.Dirección: " + this.direccion + "; \n";
+		return "Cedula: " + this.cedula +"; " +
+			   "Nombre completo: " + this.nombreCompleto+"; " +
+			   "Telefono de contacto: " + this.telefonoContacto + "; " +
+			   "Dirección: " + this.direccion + "; ";
 	}
 }

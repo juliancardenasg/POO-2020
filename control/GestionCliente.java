@@ -4,100 +4,110 @@ import control.ControlDespachos;
 import entities.Cliente;
 import entities.Pedido;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class GestionCliente {
 	//----------------6.Ver listado de Clientes registrados en el sistema-----------
-	//Recibe una lista de clientes y los imprime por pantalla 
-	//por medio de la sobrescritura del método toString en la clase CLiente.
-	public void verClientes(ArrayList<Cliente> clientes) {
-		for(Cliente cliente : clientes) {
-			System.out.println(cliente.toString());
-		}//rof
+	//Recibe una lista de clientes y los imprime por pantalla
+	//por medio de la sobrescritura del m�todo toString en la clase CLiente.
+	public void verClientes(HashMap<Long, Cliente> mapaClientes) {
+		if(!mapaClientes.isEmpty()) {
+			for(long cedulaCliente: mapaClientes.keySet()) {
+				System.out.println(mapaClientes.get(cedulaCliente).toString());
+			}//rof	
+		}//fi
 	}
-	
+
 	//------------------------------7.Insertar Cliente------------------------------
-	//Inserta un cliente y retorna true si sí se ingresó. False de lo contrario.
-	public boolean insertarCliente(ArrayList<Cliente> clientes, Cliente clienteAIngresar) {
-		for(Cliente cliente: clientes) {
-			if(clienteAIngresar.getCedula() == cliente.getCedula()) {
-				return false;
-			}//fi
-		}//rof
-		
-		clientes.add(clienteAIngresar);
-		return true;
+	//Inserta un cliente y retorna true si s� se ingres�. False de lo contrario.
+	public boolean insertarCliente(HashMap<Long, Cliente> mapaClientes, Cliente clienteAIngresar) {
+		long cedula = clienteAIngresar.getCedula();
+		if(mapaClientes.get(cedula) == null) {
+			mapaClientes.put(cedula,clienteAIngresar);
+			return true;	
+		}//fi
+		return false;
 	}
-	
+
 	//-----------------------------8.Modificar Cliente-----------------------------
 	//Retorna true si puede modificar un cliente. False de lo contrario.
-	public boolean modificarCliente(ArrayList<Cliente> clientes, long cedula) {
-		for(Cliente cliente: clientes) {
-			if(cliente.getCedula() == cedula) {
-				System.out.println(cliente.toString());
+	public boolean modificarCliente(HashMap<Long,Cliente> mapaClientes, long cedula) {
+		if(!mapaClientes.isEmpty()) {
+			if(mapaClientes.get(cedula) != null) {
+				Cliente clienteAModificar =mapaClientes.get(cedula); 
+				System.out.println(clienteAModificar.toString());
 				Scanner sc = new Scanner(System.in);
-				
-				System.out.println("Que cliente desea modificar?[1,2,3]: ");
+
+				System.out.println("Que dato desea modificar?\n1-nombre\n2-telefono\n3-direccion: ");
 				int datoAModificar = sc.nextInt();
-				
 				switch (datoAModificar) {
 				case 1://Modifica nombre completo
 					System.out.println("Ingrese el nombre a modificar: ");
 					String nombre = sc.next();
-					cliente.setNombreCompleto(nombre);
+					clienteAModificar.setNombreCompleto(nombre);
 					break;
-				case 2://Modifica teléfono de contacto
+				case 2://Modifica tel�fono de contacto
 					System.out.println("Ingrese el telefono a modificar: ");
 					long telefono = sc.nextLong();
-					cliente.setTelefonoContacto(telefono);
+					clienteAModificar.setTelefonoContacto(telefono);
 					break;
-				case 3://modifica dirección
+				case 3://modifica direcci�n
 					System.out.println("Ingrese la direccion a modificar: ");
 					String direccion = sc.next();
-					cliente.setDireccion(direccion);
+					clienteAModificar.setDireccion(direccion);
 					break;
 				default:
 					System.out.println("dato incorrecto, vuelva a intentar.");
 					break;
-				}
-				
-				return true;
+				}//hctiws
+
+					return true;
 			}//fi
-		}//rof
-		
-		System.out.println("El cliente no se encuentra registrado.");
+
+			System.out.println("El cliente no se encuentra registrado.");
+			return false;
+		}//fi
 		return false;
 	}
 	//---------------------------9.Eliminar Cliente------------------------------
 	//Retorna true si se pudo eliminar un cliente. False de lo contrario.
-	public boolean eliminarCliente(ArrayList<Cliente> clientes, ArrayList<Pedido> pedidos, long cedulaAEliminar) {
+	public boolean eliminarCliente(HashMap<Long,Cliente> mapaClientes, ArrayList<Pedido> pedidos, long cedulaAEliminar) {
 		// El siguiente for verifica que no haya un pedido asociado a un cliente
+		
+		//buscamos si existe un cliente en la lista de clientes con la c�dula dada:
+		Cliente clienteBuscado = mapaClientes.get(cedulaAEliminar);
+		
 		for(Pedido pedido : pedidos){
-			if(pedido.getSolicitante().getCedula() == cedulaAEliminar) {
+			if(pedido.getSolicitante() == clienteBuscado) {
 				System.out.println("El cliente esta asociado a un pedido. No se puede eliminar.");
 				return false;
 			}//fi
 		}//rof
 
-		//En caso de que lo anterior no pase, procedemos a
-		//buscar la cédula en la lista de clientes con el siguiente for
-		for(Cliente cliente : clientes) {
-			if(cliente.getCedula() == cedulaAEliminar) {
-				
-				Scanner sc1 = new Scanner(System.in);
+		if(clienteBuscado != null) {
+			Scanner sc = new Scanner(System.in);
 
-				System.out.println("Seguro de querer eliminar el cliente?[1=si,2=no]: ");
-				int respuesta = sc1.nextInt();
-				if(respuesta == 1) {
-					clientes.remove(cliente);
-					System.out.println("Cliente eliminado exitosamente.");
-					return true;
-				}//fi
-			}//fi
-		}//rof
+			System.out.println("Seguro de querer eliminar el cliente?[S,N]: ");
+			String respuesta = sc.next();
 
-		System.out.println("Cliente no encontrado.");
+			switch (respuesta) {
+			case "s":
+				mapaClientes.remove(clienteBuscado);
+				System.out.println("Cliente eliminado exitosamente.");
+				break;				
+			case "S":
+				mapaClientes.remove(clienteBuscado);
+				System.out.println("Cliente eliminado exitosamente.");
+				break;
+			default:
+				break;
+			}
+			return true;
+		}		
+		System.out.println("Cliente no encontrado, o no eliminado.\n");
 		return false;
 
 	}
 }
+
