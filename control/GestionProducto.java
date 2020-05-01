@@ -6,35 +6,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GestionProducto {
-
 
 	public void imprimirProductos(HashMap<Long, Producto> mapaProductos)
 	{
 		if(!mapaProductos.isEmpty()) {
 			for(long claveProducto: mapaProductos.keySet() ){
 				System.out.println(mapaProductos.get(claveProducto).toString());
-			}	
+			}
 		}
 	}
 
 
-	public boolean insertar_un_producto(HashMap<Long, Producto> mapaProductos,long pid, String nombreComercial,double precio, String tienda)
+	public boolean insertar_un_producto(HashMap<Long, Producto> mapaProductos, Producto producto)
 	{
 		
 		//int index = getIndexProducto(listaProductos,pid);
+		long pid = producto.getPid();
+		
 		if(mapaProductos.get(pid) == null)
 		{
 			String pidStr = Long.toString(pid);
 			if( pidStr.length() == 7)
 			{
-				Producto nuevo_producto = new Producto();
-				nuevo_producto.setNombreComercial(nombreComercial);
-				nuevo_producto.setPrecio(precio);
-				nuevo_producto.setTienda(tienda);
-				nuevo_producto.setIva(precio);
-				mapaProductos.put(pid,nuevo_producto);
+				mapaProductos.put(pid,producto);
 				return true;
 
 			}
@@ -42,9 +40,8 @@ public class GestionProducto {
 				return false;
 
 		}
-		else
-			return false;
-
+		return false;
+			
 	}
 
 	public boolean modificar_un_producto(HashMap<Long, Producto> mapaProductos,long pid)

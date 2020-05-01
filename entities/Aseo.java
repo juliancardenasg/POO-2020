@@ -6,13 +6,14 @@ public class Aseo extends Producto{
 		private boolean tieneInvima;
 		private TipoProducto tipoProducto;
 		//---------------------Constructors------------------------
-		public Aseo(String nombreEmpresa, boolean tieneInvima, TipoProducto tipoProducto) {
-			super();
+		public Aseo() {}
+		public Aseo(long pid, String nombreComercial, double precio, String tienda, String nombreEmpresa,
+				boolean tieneInvima, TipoProducto tipoProducto) {
+			super(pid, nombreComercial, precio, tienda);
 			this.nombreEmpresa = nombreEmpresa;
 			this.tieneInvima = tieneInvima;
 			this.tipoProducto = tipoProducto;
 		}
-		public Aseo() {}
 		//---------------------Accessors------------------------
 		public String getNombreEmpresa() {
 			return nombreEmpresa;

@@ -12,12 +12,13 @@ import entities.Pedido;
 import java.text.ParseException;
 import java.util.Random;
 import java.util.HashMap;
+
 public class ControlDespachos {
 
-    private GestionCliente gestionCliente;
-    private GestionProducto gestionProducto;
-    private HashMap<Long, Cliente> mapaClientes = new HashMap();
-    private HashMap<Long, Producto> mapaProductos = new HashMap();
+    private GestionCliente gestionCliente = new GestionCliente();
+    private GestionProducto gestionProducto = new GestionProducto();
+    private HashMap<Long, Cliente> mapaClientes = new HashMap<Long, Cliente>();
+    private HashMap<Long, Producto> mapaProductos = new HashMap<Long, Producto>();
     private ArrayList<Pedido> pedidos = new ArrayList <>();
 
     public ControlDespachos() {
@@ -34,7 +35,7 @@ public class ControlDespachos {
         this.pedidos = pedidos;
     }
     
-    public ControlDespachos(GestionCliente gestionCliente, GestionProducto gestionProducto{
+    public ControlDespachos(GestionCliente gestionCliente, GestionProducto gestionProducto){
     	super();
     	this.gestionCliente = gestionCliente;
     	this.gestionProducto = gestionProducto;
@@ -348,8 +349,8 @@ public class ControlDespachos {
     public void imprimirProductos(){
         this.gestionProducto.imprimirProductos(this.mapaProductos);
     }
-    public boolean insertar_un_producto(long pid, String nombreComercial,double precio, String tienda){
-        return this.gestionProducto.insertar_un_producto(this.mapaProductos,pid, nombreComercial,precio, tienda);
+    public boolean insertar_un_producto(Producto producto){
+        return this.gestionProducto.insertar_un_producto(this.mapaProductos, producto);
     }
 
     public boolean modificar_un_producto(long pid){

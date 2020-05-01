@@ -21,7 +21,8 @@ public class GestionCliente {
 
 	//------------------------------7.Insertar Cliente------------------------------
 	//Inserta un cliente y retorna true si sí se ingresó. False de lo contrario.
-	public boolean insertarCliente(HashMap<Long, Cliente> mapaClientes, Cliente clienteAIngresar, long cedula) {
+	public boolean insertarCliente(HashMap<Long, Cliente> mapaClientes, Cliente clienteAIngresar) {
+		long cedula = clienteAIngresar.getCedula();
 		if(mapaClientes.get(cedula) == null) {
 			mapaClientes.put(cedula,clienteAIngresar);
 			return true;	
@@ -38,7 +39,7 @@ public class GestionCliente {
 				System.out.println(clienteAModificar.toString());
 				Scanner sc = new Scanner(System.in);
 
-				System.out.println("Que cliente desea modificar?[1,2,3]: ");
+				System.out.println("Que dato desea modificar?\n1-nombre\n2-telefono\n3-direccion: ");
 				int datoAModificar = sc.nextInt();
 				switch (datoAModificar) {
 				case 1://Modifica nombre completo
