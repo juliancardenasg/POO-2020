@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RegristroClientes>
+    <clientes>
+        <entry>
+            <key>1321456</key>
+            <value>
+                <cedula>1321456</cedula>
+                <direccion>calle c</direccion>
+                <nombreCompleto>Ricardo Torres</nombreCompleto>
+                <telefonoContacto>545154</telefonoContacto>
+            </value>
+        </entry>
+        <entry>
+            <key>4324</key>
+            <value>
+                <cedula>4324</cedula>
+                <direccion>calle m</direccion>
+                <nombreCompleto>Edgar B</nombreCompleto>
+                <telefonoContacto>4543543</telefonoContacto>
+            </value>
+        </entry>
+        <entry>
+            <key>54456</key>
+            <value>
+                <cedula>54456</cedula>
+                <direccion>calle cee</direccion>
+                <nombreCompleto>Richard T</nombreCompleto>
+                <telefonoContacto>54564</telefonoContacto>
+            </value>
+        </entry>
+        <entry>
+            <key>5435435</key>
+            <value>
+                <cedula>5435435</cedula>
+                <direccion>calle mee</direccion>
+                <nombreCompleto>Julian D</nombreCompleto>
+                <telefonoContacto>5435435</telefonoContacto>
+            </value>
+        </entry>
+        <entry>
+            <key>1213</key>
+            <value>
+                <cedula>1213</cedula>
+                <direccion>calle ce</direccion>
+                <nombreCompleto>Julian C</nombreCompleto>
+                <telefonoContacto>4455</telefonoContacto>
+            </value>
+        </entry>
+    </clientes>
+</RegristroClientes>

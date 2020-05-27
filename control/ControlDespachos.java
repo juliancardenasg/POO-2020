@@ -6,9 +6,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import javax.xml.bind.JAXB;
+
+import entities.ArchivoClientes;
+import entities.ArchivoPedido;
 import entities.Cliente;
 import entities.Producto;
+import javafx.event.ActionEvent;
 import entities.Pedido;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.Random;
 import java.util.HashMap;
@@ -375,6 +386,45 @@ public class ControlDespachos {
     public boolean eliminarCliente(long cedulaAEliminar) {
         return this.gestionCliente.eliminarCliente(this.mapaClientes, this.pedidos, cedulaAEliminar);
     }
-
+	//--------------------------------guardarXML-Clientes-----------------------------
+    public void guardarArchivosXML(){
+        ArchivoClientes archivoSalida = new ArchivoClientes(this.mapaClientes);
+        try(BufferedWriter output =  Files.newBufferedWriter(Paths.get("res/data/pruebaClientes.xml"))){
+        	System.out.println("entro-------------");
+            JAXB.marshal(archivoSalida, output);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    
+	//--------------------------------cargarXML-Clientes-----------------------------
+    public void cargarArchivoXML() {//ActionEvent event) {
+    	try(BufferedReader input =  Files.newBufferedReader(Paths.get("res/data/lecturaClientes.xml"))){
+            ArchivoClientes archivoEntrada = JAXB.unmarshal(input, ArchivoClientes.class);
+            //Verificar si el archivo fue leido satisfactoriamente
+            for(Cliente cliente: archivoEntrada.getClientes().values()){
+                System.out.println(cliente.toString());
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+	//--------------------------------guardarXML-Pedidos-----------------------------
+    public void guardarArchivosXML_pedido(){
+        ArchivoPedido archivoSalida = new ArchivoPedido(this.pedidos);
+        try(BufferedWriter output =  Files.newBufferedWriter(Paths.get("res/data/reportePedidos.xml"))){
+        	System.out.println("entro-------------");
+            JAXB.marshal(archivoSalida, output);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    
+    
 }
 

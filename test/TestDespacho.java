@@ -167,6 +167,29 @@ class TestDespacho {
 		assertEquals(true, eliminadoRicardo);
 	}
 	
+	@Test	
+	void testGuardarXML() {
+		System.out.println("------testGuardarXML-Cliente-------------");
+		Cliente ricardo = new Cliente(1321456, "Ricardo Torres", 545154, "calle c");
+		Cliente julian = new Cliente(1213, "Julian C", 4455, "calle ce");
+		Cliente richard = new Cliente(54456, "Richard T", 54564, "calle cee");
+		Cliente edgar = new Cliente(4324, "Edgar B", 4543543, "calle m");
+		Cliente julianD= new Cliente(5435435, "Julian D", 5435435, "calle mee");
+		
+		admin.insertarCliente(ricardo);
+		admin.insertarCliente(julian);
+		admin.insertarCliente(richard);
+		admin.insertarCliente(edgar);
+		admin.insertarCliente(julianD);
+
+		admin.guardarArchivosXML();
+	}
 	
+	@Test	
+	void testCargarXML() {
+		admin.cargarArchivoXML();
+	}
+	
+
 
 }
