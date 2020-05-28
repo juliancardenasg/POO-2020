@@ -9,15 +9,13 @@ import java.util.Scanner;
 
 import javax.xml.bind.JAXB;
 
-import entities.ArchivoClientes;
-import entities.ArchivoPedido;
-import entities.Cliente;
-import entities.Producto;
+import entities.*;
 import javafx.event.ActionEvent;
-import entities.Pedido;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -338,7 +336,11 @@ public class ControlDespachos {
     //13//
     public void VerListadoDePedidosExistentes() {
         for (Pedido ped : pedidos) {
-            System.out.println("\nCODIGO:" + ped.getNumeroPedido() + "\nFECHA:" + ped.getFechaRecibido() + "\nNOMBRE REPARTIDOR" + ped.getNombreRepartidor() + "\nPRECIO" + costoPedido(ped.getSolicitante().getCedula(),ped.getProductoSolicitado().getPid(), ped.getProductoSolicitado()));
+            System.out.println("\nCODIGO:" + ped.getNumeroPedido() + 
+            		"\nFECHA:" + ped.getFechaRecibido() + "\nNOMBRE REPARTIDOR"
+            		+ ped.getNombreRepartidor() + "\nPRECIO" );//+ ped.getSolicitante().toString()+ped.getProductoSolicitado().toString());
+            		//costoPedido(ped.getSolicitante().getCedula(),
+            		//		ped.getProductoSolicitado().getPid(), ped.getProductoSolicitado()));
 
         }
     }
@@ -387,7 +389,7 @@ public class ControlDespachos {
         return this.gestionCliente.eliminarCliente(this.mapaClientes, this.pedidos, cedulaAEliminar);
     }
 	//--------------------------------guardarXML-Clientes-----------------------------
-    public void guardarArchivosXML(){
+    public void guardarArchivosXMLCliente(){
         ArchivoClientes archivoSalida = new ArchivoClientes(this.mapaClientes);
         try(BufferedWriter output =  Files.newBufferedWriter(Paths.get("res/data/pruebaClientes.xml"))){
         	System.out.println("entro-------------");
@@ -399,7 +401,7 @@ public class ControlDespachos {
     
     
 	//--------------------------------cargarXML-Clientes-----------------------------
-    public void cargarArchivoXML() {//ActionEvent event) {
+    public void cargarArchivoXMLCliente() {//ActionEvent event) {
     	try(BufferedReader input =  Files.newBufferedReader(Paths.get("res/data/lecturaClientes.xml"))){
             ArchivoClientes archivoEntrada = JAXB.unmarshal(input, ArchivoClientes.class);
             //Verificar si el archivo fue leido satisfactoriamente
@@ -411,10 +413,25 @@ public class ControlDespachos {
             e.printStackTrace();
         }
     }
-	//--------------------------------guardarXML-Pedidos-----------------------------
-    public void guardarArchivosXML_pedido(){
-        ArchivoPedido archivoSalida = new ArchivoPedido(this.pedidos);
-        try(BufferedWriter output =  Files.newBufferedWriter(Paths.get("res/data/reportePedidos.xml"))){
+
+    
+	//--------------------------------cargar XML's-Productos-----------------------------
+    public void cargarArchivosXML_producto(){
+    	try(BufferedReader input =  Files.newBufferedReader(Paths.get("res/data/pruebaEntradaProductos.xml"))){
+            ArchivoProductos archivoEntrada = JAXB.unmarshal(input, ArchivoProductos.class);
+            //Verificar si el archivo fue leido satisfactoriamente
+            for(Producto producto: archivoEntrada.getProductos().values()){
+                System.out.println(producto.toString());
+            }
+        } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+  //--------------------------------guardar XML's Productos--------------------------------
+    public void guardarArchivosXML_producto(){
+        ArchivoProductos archivoSalida = new ArchivoProductos(this.mapaProductos);
+        try(BufferedWriter output =  Files.newBufferedWriter(Paths.get("res/data/pruebaSalidaProductos.xml"))){
         	System.out.println("entro-------------");
             JAXB.marshal(archivoSalida, output);
         }catch(Exception e){
@@ -422,6 +439,30 @@ public class ControlDespachos {
         }
     }
     
+  //--------------------------------cargar XML's-Productos-----------------------------
+    public void cargarArchivosXMLPedidos(){
+    	try(BufferedReader input =  Files.newBufferedReader(Paths.get("res/data/pruebaEntradaPedidos.xml"))){
+            ArchivoPedido archivoEntrada = JAXB.unmarshal(input, ArchivoPedido.class);
+            //Verificar si el archivo fue leido satisfactoriamente
+            for(Pedido pedido: archivoEntrada.getPedidos()){
+                System.out.println(pedido.getFechaRecibido());
+            }
+        } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+	//--------------------------------guardarXML-Pedidos-----------------------------
+    public void guardarArchivosXMLPedidos(){
+        ArchivoPedido archivoSalida = new ArchivoPedido(this.pedidos);
+        try(BufferedWriter output =  Files.newBufferedWriter(Paths.get("res/data/pruebaSalidaPedidos.xml"))){
+        	System.out.println("entro-------------");
+            JAXB.marshal(archivoSalida, output);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
     
     

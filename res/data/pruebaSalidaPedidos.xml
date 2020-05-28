@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RegristroPedidos>
+    <Pedido>
+        <fechaRecibido>2020-05-27T23:57:50.432-05:00</fechaRecibido>
+        <nombreRepartidor>Pepe</nombreRepartidor>
+        <numeroPedido>13213</numeroPedido>
+        <pagado>true</pagado>
+        <productoSolicitado>
+            <iva>189999.9976158142</iva>
+            <nombreComercial>cubrebocas</nombreComercial>
+            <pid>1000006</pid>
+            <precio>1000000.0</precio>
+            <tienda>D1</tienda>
+        </productoSolicitado>
+        <solicitante>
+            <cedula>5435435</cedula>
+            <direccion>calle mee</direccion>
+            <nombreCompleto>Julian D</nombreCompleto>
+            <telefonoContacto>5435435</telefonoContacto>
+        </solicitante>
+    </Pedido>
+    <Pedido>
+        <fechaRecibido>2020-05-27T23:57:50.434-05:00</fechaRecibido>
+        <nombreRepartidor>Magui</nombreRepartidor>
+        <numeroPedido>18943</numeroPedido>
+        <pagado>true</pagado>
+        <productoSolicitado>
+            <iva>2849.999964237213</iva>
+            <nombreComercial>shampoo </nombreComercial>
+            <pid>4</pid>
+            <precio>15000.0</precio>
+            <tienda>D1</tienda>
+        </productoSolicitado>
+        <solicitante>
+            <cedula>1321456</cedula>
+            <direccion>calle c</direccion>
+            <nombreCompleto>Ricardo Torres</nombreCompleto>
+            <telefonoContacto>545154</telefonoContacto>
+        </solicitante>
+    </Pedido>
+    <Pedido>
+        <fechaRecibido>2020-05-27T23:57:50.434-05:00</fechaRecibido>
+        <nombreRepartidor>Julian</nombreRepartidor>
+        <numeroPedido>23613</numeroPedido>
+        <pagado>true</pagado>
+        <productoSolicitado>
+            <iva>379.9999952316284</iva>
+            <nombreComercial>brevas con arequipe</nombreComercial>
+            <pid>3</pid>
+            <precio>2000.0</precio>
+            <tienda>jumbo</tienda>
+        </productoSolicitado>
+        <solicitante>
+            <cedula>4324</cedula>
+            <direccion>calle m</direccion>
+            <nombreCompleto>Edgar B</nombreCompleto>
+            <telefonoContacto>4543543</telefonoContacto>
+        </solicitante>
+    </Pedido>
+    <Pedido>
+        <fechaRecibido>2020-05-27T23:57:50.434-05:00</fechaRecibido>
+        <nombreRepartidor>Diomedes</nombreRepartidor>
+        <numeroPedido>41013</numeroPedido>
+        <pagado>true</pagado>
+        <productoSolicitado>
+            <iva>284999.9964237213</iva>
+            <nombreComercial>xbox 1</nombreComercial>
+            <pid>7</pid>
+            <precio>1500000.0</precio>
+            <tienda>alkosto</tienda>
+        </productoSolicitado>
+        <solicitante>
+            <cedula>54456</cedula>
+            <direccion>calle cee</direccion>
+            <nombreCompleto>Richard T</nombreCompleto>
+            <telefonoContacto>54564</telefonoContacto>
+        </solicitante>
+    </Pedido>
+</RegristroPedidos>

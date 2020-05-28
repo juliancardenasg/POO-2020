@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RegristroPedidos>
+    <Pedido>
+        <fechaRecibido>2020-05-27T23:49:19.163-05:00</fechaRecibido>
+        <nombreRepartidor>Julian</nombreRepartidor>
+        <numeroPedido>23613</numeroPedido>
+        <pagado>true</pagado>
+        <productoSolicitado>
+            <iva>379.9999952316284</iva>
+            <nombreComercial>brevas con arequipe</nombreComercial>
+            <pid>3</pid>
+            <precio>2000.0</precio>
+            <tienda>jumbo</tienda>
+        </productoSolicitado>
+        <solicitante>
+            <cedula>4324</cedula>
+            <direccion>calle m</direccion>
+            <nombreCompleto>Edgar B</nombreCompleto>
+            <telefonoContacto>4543543</telefonoContacto>
+        </solicitante>
+    </Pedido>
+    <Pedido>
+        <fechaRecibido>2020-05-27T23:49:19.163-05:00</fechaRecibido>
+        <nombreRepartidor>Diomedes</nombreRepartidor>
+        <numeroPedido>41013</numeroPedido>
+        <pagado>true</pagado>
+        <productoSolicitado>
+            <iva>284999.9964237213</iva>
+            <nombreComercial>xbox 1</nombreComercial>
+            <pid>7</pid>
+            <precio>1500000.0</precio>
+            <tienda>alkosto</tienda>
+        </productoSolicitado>
+        <solicitante>
+            <cedula>54456</cedula>
+            <direccion>calle cee</direccion>
+            <nombreCompleto>Richard T</nombreCompleto>
+            <telefonoContacto>54564</telefonoContacto>
+        </solicitante>
+    </Pedido>
+</RegristroPedidos>

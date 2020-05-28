@@ -10,7 +10,7 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "Producto \n(imposible de modificar)pid=" + pid + ", \n(1)nombreComercial=" + nombreComercial + ", \n(2)precio=" + precio + ", \n(2)iva=" + iva
+		return "Producto \n pid=" + pid + ", \n(1)nombreComercial=" + nombreComercial + ", \n(2)precio=" + precio + ", \n(2)iva=" + iva
 				+ ", \n(3)tienda=" + tienda ;
 	}
 

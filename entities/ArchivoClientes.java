@@ -26,8 +26,5 @@ public class ArchivoClientes {
 		this.clientes = clientes;
 	}
 	public ArchivoClientes() {}
-	
-	
-	
 
 }

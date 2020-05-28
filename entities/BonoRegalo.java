@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class BonoRegalo extends ServicioAdicional {
 	
-	public String comercioAsociado;
-	public String mensaje;
-	public Date fechaVencimiento;
+	private String comercioAsociado;
+	private String mensaje;
+	private	 Date fechaVencimiento;
 
 	public BonoRegalo() {
 		super();

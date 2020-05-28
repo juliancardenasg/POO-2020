@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RegistroProductos>
+    <productos>
+        <entry>
+            <key>1000007</key>
+            <value>
+                <iva>284999.9964237213</iva>
+                <nombreComercial>xbox 1</nombreComercial>
+                <pid>1000007</pid>
+                <precio>1500000.0</precio>
+                <tienda>alkosto</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>1000006</key>
+            <value>
+                <iva>189999.9976158142</iva>
+                <nombreComercial>cubrebocas</nombreComercial>
+                <pid>1000006</pid>
+                <precio>1000000.0</precio>
+                <tienda>D1</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>1000005</key>
+            <value>
+                <iva>949.999988079071</iva>
+                <nombreComercial>crema colgate</nombreComercial>
+                <pid>1000005</pid>
+                <precio>5000.0</precio>
+                <tienda>etsito</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>1000004</key>
+            <value>
+                <iva>2849.999964237213</iva>
+                <nombreComercial>shampoo </nombreComercial>
+                <pid>1000004</pid>
+                <precio>15000.0</precio>
+                <tienda>D1</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>1000003</key>
+            <value>
+                <iva>379.9999952316284</iva>
+                <nombreComercial>brevas con arequipe</nombreComercial>
+                <pid>1000003</pid>
+                <precio>2000.0</precio>
+                <tienda>jumbo</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>1000002</key>
+            <value>
+                <iva>94.9999988079071</iva>
+                <nombreComercial>toronja</nombreComercial>
+                <pid>1000002</pid>
+                <precio>500.0</precio>
+                <tienda>exito</tienda>
+            </value>
+        </entry>
+        <entry>
+            <key>1000001</key>
+            <value>
+                <iva>189.9999976158142</iva>
+                <nombreComercial>manzana roja</nombreComercial>
+                <pid>1000001</pid>
+                <precio>1000.0</precio>
+                <tienda>D1</tienda>
+            </value>
+        </entry>
+    </productos>
+</RegistroProductos>

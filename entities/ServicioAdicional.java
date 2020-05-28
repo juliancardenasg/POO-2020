@@ -2,9 +2,9 @@ package entities;
 
 public abstract class ServicioAdicional {
 	
-	public long codigoServicio;
-	public String nombreServicio;
-	public double precio;
+	protected long codigoServicio;
+	protected String nombreServicio;
+	protected double precio;
 	
 	public ServicioAdicional() {
 		super();
