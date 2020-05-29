@@ -406,7 +406,7 @@ public class ControlDespachos {
             ArchivoClientes archivoEntrada = JAXB.unmarshal(input, ArchivoClientes.class);
             //Verificar si el archivo fue leido satisfactoriamente
             for(Cliente cliente: archivoEntrada.getClientes().values()){
-                System.out.println(cliente.toString());
+                this.insertarCliente(cliente);
             }
         }
         catch(Exception e){
@@ -421,12 +421,14 @@ public class ControlDespachos {
             ArchivoProductos archivoEntrada = JAXB.unmarshal(input, ArchivoProductos.class);
             //Verificar si el archivo fue leido satisfactoriamente
             for(Producto producto: archivoEntrada.getProductos().values()){
-                System.out.println(producto.toString());
+                this.insertar_un_producto(producto);
+            	//System.out.println(producto.toString());
             }
         } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
     }
   //--------------------------------guardar XML's Productos--------------------------------
     public void guardarArchivosXML_producto(){
@@ -445,7 +447,7 @@ public class ControlDespachos {
             ArchivoPedido archivoEntrada = JAXB.unmarshal(input, ArchivoPedido.class);
             //Verificar si el archivo fue leido satisfactoriamente
             for(Pedido pedido: archivoEntrada.getPedidos()){
-                System.out.println(pedido.getFechaRecibido());
+                System.out.println(pedido.getSolicitante().toString());
             }
         } catch (Exception e) {
 			// TODO Auto-generated catch block

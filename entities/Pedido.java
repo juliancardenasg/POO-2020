@@ -15,6 +15,10 @@ public class Pedido {
     private ArrayList<ServicioAdicional> serviciosAdicionales =new ArrayList<>();
 
 
+    @Override
+    public String toString() {
+    	return this.nombreRepartidor +this.solicitante.toString()+this.productoSolicitado.toString();
+    }
     public Pedido() {
 		super();
 	}

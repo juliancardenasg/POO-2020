@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boundary.ProyectoPOO_interfazgraficaRealController">
+  <tabs>
+    <Tab text="Productos">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bea4fc" height="164.0" layoutX="14.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="277.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb2" height="342.0" layoutX="313.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="280.0" />
+                  <ScrollBar layoutX="292.0" layoutY="188.0" orientation="VERTICAL" prefHeight="163.0" prefWidth="17.0" />
+                  <Label layoutX="96.0" layoutY="22.0" text="Agregar un producto" />
+                  <Label layoutX="23.0" layoutY="39.0" text="Nombre" />
+                  <Label layoutX="23.0" layoutY="88.0" text="ID" />
+                  <Label layoutX="23.0" layoutY="131.0" text="Precio" />
+                  <TextField fx:id="prod_name_agregar" layoutX="23.0" layoutY="56.0" />
+                  <TextField fx:id="prod_id_agregar" layoutX="23.0" layoutY="105.0" />
+                  <TextField fx:id="prod_price_agregar" layoutX="23.0" layoutY="148.0" />
+                  <ListView fx:id="prod_list" layoutX="14.0" layoutY="178.0" prefHeight="183.0" prefWidth="274.0" />
+                  <Label layoutX="345.0" layoutY="123.0" text="ID" />
+                  <Label layoutX="345.0" layoutY="188.0" text="Precio" />
+                  <Label fx:id="prod_name_mostrar" layoutX="422.0" layoutY="77.0" text="Nombre">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="prod_id_mostrar" layoutX="339.0" layoutY="148.0" />
+                  <TextField fx:id="prod_price_mostrar" layoutX="339.0" layoutY="211.0" />
+                  <Button fx:id="prod_agregar" layoutX="219.0" layoutY="148.0" mnemonicParsing="false" onAction="#botonAgregarProducto" text="Agregar" />
+                  <Button fx:id="prod_modificar" layoutX="339.0" layoutY="289.0" mnemonicParsing="false" onAction="#modificarProductoB" text="Modificar" />
+                  <Button fx:id="prod_eliminar" layoutX="491.0" layoutY="289.0" mnemonicParsing="false" onAction="#eliminarProductoB" text="Eliminar" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Clientes">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbb7ff" height="178.0" layoutX="12.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="270.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#aee4cf" height="358.0" layoutX="304.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" width="283.0" />
+                  <ScrollBar layoutX="283.0" layoutY="190.0" orientation="VERTICAL" prefHeight="170.0" prefWidth="17.0" />
+                  <ListView fx:id="client_list" layoutX="14.0" layoutY="186.0" prefHeight="177.0" prefWidth="268.0" />
+                  <Label layoutX="59.0" layoutY="6.0" text="Agregar nuevo cliente" />
+                  <TextField fx:id="client_name_agregar" layoutX="21.0" layoutY="41.0" />
+                  <TextField fx:id="client_id_agregar" layoutX="21.0" layoutY="90.0" />
+                  <TextField fx:id="cliente_tel_agregar" layoutX="21.0" layoutY="139.0" />
+                  <Label layoutX="21.0" layoutY="23.0" text="Nombre" />
+                  <Label layoutX="21.0" layoutY="75.0" text="Numero de identificación" />
+                  <Label layoutX="21.0" layoutY="122.0" text="Telefono" />
+                  <Label layoutX="318.0" layoutY="139.0" text="Numero de Identificación" />
+                  <Label layoutX="318.0" layoutY="201.0" text="Telefono" />
+                  <TextArea fx:id="cliente_id_mostrar" layoutX="318.0" layoutY="156.0" prefHeight="18.0" prefWidth="170.0" />
+                  <TextArea fx:id="client_tel_mostrar" layoutX="318.0" layoutY="218.0" prefHeight="18.0" prefWidth="170.0" />
+                  <Label fx:id="client_name_mostrar" layoutX="430.0" layoutY="107.0" text="Nombre">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <Button fx:id="client_agregar" layoutX="203.0" layoutY="143.0" mnemonicParsing="false" onAction="#botonAgregarCliente" text="Agregar" />
+                  <ImageView fitHeight="87.0" fitWidth="132.0" layoutX="414.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@kisspng-computer-icons-user-vector-graphics-portable-netwo-male-user-svg-png-icon-free-download-34728-on-5b7f4c543c3ab9.8817263415350692682467.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="client_modificar" layoutX="324.0" layoutY="298.0" mnemonicParsing="false" onAction="#botonModificarCliente" text="Modificar" />
+                  <Button fx:id="client_eliminar" layoutX="488.0" layoutY="298.0" mnemonicParsing="false" onAction="#botonEliminarCliente" text="Eliminar" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Pedidos">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3392ea" height="323.0" layoutX="20.0" layoutY="8.0" opacity="0.25" stroke="BLACK" strokeType="INSIDE" width="294.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0be58a" height="359.0" layoutX="356.0" layoutY="8.0" opacity="0.25" stroke="RED" strokeType="INSIDE" width="219.0" />
+                  <Label layoutX="59.0" layoutY="14.0" text="RESERVAR UN PEDIDO">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="30.0" layoutY="39.0" text="Servicios adicionales:" />
+                  <Label layoutX="46.0" layoutY="86.0" text="Cliente:" />
+                  <Label layoutX="46.0" layoutY="137.0" text="Producto:" />
+                  <Button fx:id="pedido_modificar" layoutX="397.0" layoutY="255.0" mnemonicParsing="false" text="Modificar" />
+                  <Button fx:id="pedido_eliminar" layoutX="494.0" layoutY="255.0" mnemonicParsing="false" text="Eliminar" />
+                  <ChoiceBox fx:id="pedido_servicios_reservar" layoutX="37.0" layoutY="56.0" prefHeight="27.0" prefWidth="162.0" />
+                  <ChoiceBox fx:id="pedido_producto_reservar" layoutX="37.0" layoutY="156.0" prefHeight="27.0" prefWidth="164.0" />
+                  <Label layoutX="378.0" layoutY="146.0" text="Producto:" />
+                  <ChoiceBox fx:id="pedido_servicios_mostrar" layoutX="377.0" layoutY="70.0" prefHeight="27.0" prefWidth="159.0" />
+                  <Label layoutX="377.0" layoutY="95.0" text="Cliente:" />
+                  <Label layoutX="377.0" layoutY="47.0" text="Servicios adicionales:" />
+                  <ChoiceBox fx:id="pedido_producto_mostrar" layoutX="376.0" layoutY="170.0" prefHeight="27.0" prefWidth="160.0" />
+                  <Button fx:id="pedido_reservar" layoutX="118.0" layoutY="229.0" mnemonicParsing="false" onAction="#botonReservarPedido" text="Reservar" />
+                  <ChoiceBox fx:id="pedido_cliente_reservar" layoutX="36.0" layoutY="112.0" prefHeight="26.0" prefWidth="171.0" />
+                  <ChoiceBox fx:id="pedido_cliente_mostrar" layoutX="373.0" layoutY="112.0" prefHeight="26.0" prefWidth="163.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Reportes">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3392ea" height="351.0" layoutX="18.0" layoutY="14.0" opacity="0.25" stroke="BLACK" strokeType="INSIDE" width="237.0" />
+                  <ChoiceBox fx:id="reporte_tipo_buscar" layoutX="41.0" layoutY="48.0" prefWidth="150.0" />
+                  <Label layoutX="43.0" layoutY="26.0" text="Tipo de Listado que desea:" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1000" height="309.0" layoutX="263.0" layoutY="14.0" opacity="0.25" stroke="BLACK" strokeType="INSIDE" width="247.0" />
+                  <Label layoutX="365.0" layoutY="40.0" text="Listado:" />
+                  <ListView fx:id="reporte_list" layoutX="287.0" layoutY="69.0" prefHeight="242.0" prefWidth="200.0" />
+                  <TextField fx:id="reporte_tipo" layoutX="35.0" layoutY="300.0" />
+                  <Label layoutX="54.0" layoutY="83.0" text="Informacion adicional:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="147.0" text="Fecha(Fecha inicial):" />
+                  <Label layoutX="35.0" layoutY="190.0" text="Fecha final:" />
+                  <Label layoutX="35.0" layoutY="238.0" text="Producto" />
+                  <Label layoutX="30.0" layoutY="283.0" text="Tipo(producto/transporte):" />
+                  <Label layoutX="348.0" layoutY="16.0" text="REPORTES">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="105.0" text="Ingrese solo la necesaria para" />
+                  <Label layoutX="33.0" layoutY="122.0" text=" el tipo de listado especificado" />
+                  <Button fx:id="reporte_buscar" layoutX="184.0" layoutY="327.0" mnemonicParsing="false" onAction="#botonBuscarReporte" text="Buscar" />
+                  <DatePicker fx:id="reporte_fechai" layoutX="35.0" layoutY="165.0" />
+                  <DatePicker fx:id="reporte_fechaf" layoutX="35.0" layoutY="208.0" />
+                  <ChoiceBox fx:id="reporte_producto" layoutX="38.0" layoutY="256.0" prefWidth="150.0" />
+                  <TextField fx:id="textFieldReporte" layoutX="289.0" layoutY="68.0" prefHeight="244.0" prefWidth="195.0" />
+               </children>
+            </AnchorPane>
+         </content></Tab>
+  </tabs>
+</TabPane>
