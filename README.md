@@ -13,11 +13,11 @@ Integrantes del proyecto:
 
 Algunas recomendaciones generales (LEER URGENTE):
 
-1. Ya se crearon los tres diferentes espacios de trabajo (branches/ramas), distribuidos asi:
+1. Ya se crearom los tres diferentes espacios de trabajo (branches/ramas), distribuidos asi:
 Rama de desarrollo: Cliente (control/entinties): Edgar Baquero
 Rama de desarrollo: Producto (control/entities): Ricardo T
 Rama de desarrollo: Pedido (control/entities): Julian Cárdenas y Richard Fonseca
-Rama default : Master : Es la rama final, solo hacer merge cuando se este 100% seguros de los cambios y avisar.
+Rama default : Master : Es la rama final, solo hacer merge cuando se este 200% seguros de los cambios y avisar.
 
 Tener en cuenta lo siguiente:
 
